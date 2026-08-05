@@ -179,6 +179,12 @@ class AppLocalizationsEn extends AppLocalizations {
   String get searchHint => 'Search workers or materials...';
 
   @override
+  String get filterButtonTooltip => 'Filter';
+
+  @override
+  String get filterSheetTitle => 'Filter by category';
+
+  @override
   String get sectionCategories => 'Categories';
 
   @override
@@ -575,6 +581,48 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get adminMenuUsers => 'Users';
+
+  @override
+  String get adminMenuAllWorkers => 'All workers';
+
+  @override
+  String get adminMenuAllShops => 'All shops';
+
+  @override
+  String get adminNoWorkers => 'No workers';
+
+  @override
+  String get adminNoShops => 'No shops';
+
+  @override
+  String get adminNoOrders => 'No orders';
+
+  @override
+  String get adminApprovedLabel => 'Approved';
+
+  @override
+  String get adminPendingLabel => 'Pending';
+
+  @override
+  String get adminOrderStatusPending => 'Pending';
+
+  @override
+  String get adminOrderStatusAccepted => 'Accepted';
+
+  @override
+  String get adminOrderStatusInProgress => 'In progress';
+
+  @override
+  String get adminOrderStatusCompleted => 'Completed';
+
+  @override
+  String get adminOrderStatusCancelled => 'Cancelled';
+
+  @override
+  String get adminOrderTargetWorker => 'Worker order';
+
+  @override
+  String get adminOrderTargetMaterial => 'Material order';
 
   @override
   String get adminAddCategory => 'Add category';

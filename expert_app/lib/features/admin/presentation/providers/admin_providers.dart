@@ -6,6 +6,7 @@ import '../../../../core/usecases/usecase.dart';
 import '../../../auth/domain/entities/user_entity.dart';
 import '../../../auth/presentation/providers/auth_providers.dart';
 import '../../../home/domain/entities/category_entity.dart';
+import '../../../order/domain/entities/order_entity.dart';
 import '../../../shop/domain/entities/shop_entity.dart';
 import '../../../worker/domain/entities/worker_entity.dart';
 import '../../../worker/presentation/providers/worker_providers.dart';
@@ -19,6 +20,9 @@ import '../../domain/usecases/create_category.dart';
 import '../../domain/usecases/delete_category.dart';
 import '../../domain/usecases/get_admin_stats.dart';
 import '../../domain/usecases/get_all_categories.dart';
+import '../../domain/usecases/get_all_shops.dart';
+import '../../domain/usecases/get_all_workers.dart';
+import '../../domain/usecases/get_orders.dart';
 import '../../domain/usecases/get_pending_shops.dart';
 import '../../domain/usecases/get_pending_workers.dart';
 import '../../domain/usecases/get_users.dart';
@@ -52,6 +56,21 @@ final pendingWorkersProvider = FutureProvider<List<WorkerEntity>>((ref) async {
 
 final pendingShopsProvider = FutureProvider<List<ShopEntity>>((ref) async {
   final result = await GetPendingShops(ref.watch(adminRepositoryProvider))(const NoParams());
+  return result.fold((failure) => throw failure, (data) => data);
+});
+
+final allWorkersAdminProvider = FutureProvider<List<WorkerEntity>>((ref) async {
+  final result = await GetAllWorkers(ref.watch(adminRepositoryProvider))(const NoParams());
+  return result.fold((failure) => throw failure, (data) => data);
+});
+
+final allShopsAdminProvider = FutureProvider<List<ShopEntity>>((ref) async {
+  final result = await GetAllShops(ref.watch(adminRepositoryProvider))(const NoParams());
+  return result.fold((failure) => throw failure, (data) => data);
+});
+
+final adminOrdersProvider = FutureProvider<List<OrderEntity>>((ref) async {
+  final result = await GetOrders(ref.watch(adminRepositoryProvider))(const NoParams());
   return result.fold((failure) => throw failure, (data) => data);
 });
 
@@ -146,6 +165,7 @@ class WorkerApprovalController extends AsyncNotifier<void> {
       (_) {
         state = const AsyncData(null);
         ref.invalidate(pendingWorkersProvider);
+        ref.invalidate(allWorkersAdminProvider);
         ref.invalidate(adminStatsProvider);
         ref.invalidate(workersListProvider(null));
         return true;
@@ -164,6 +184,7 @@ class WorkerApprovalController extends AsyncNotifier<void> {
       (_) {
         state = const AsyncData(null);
         ref.invalidate(pendingWorkersProvider);
+        ref.invalidate(allWorkersAdminProvider);
         ref.invalidate(adminStatsProvider);
         return true;
       },
@@ -189,6 +210,7 @@ class ShopApprovalController extends AsyncNotifier<void> {
       (_) {
         state = const AsyncData(null);
         ref.invalidate(pendingShopsProvider);
+        ref.invalidate(allShopsAdminProvider);
         ref.invalidate(adminStatsProvider);
         return true;
       },
@@ -206,6 +228,7 @@ class ShopApprovalController extends AsyncNotifier<void> {
       (_) {
         state = const AsyncData(null);
         ref.invalidate(pendingShopsProvider);
+        ref.invalidate(allShopsAdminProvider);
         ref.invalidate(adminStatsProvider);
         return true;
       },

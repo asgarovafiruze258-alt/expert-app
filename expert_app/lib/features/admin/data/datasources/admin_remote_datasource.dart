@@ -3,6 +3,7 @@ import 'package:supabase_flutter/supabase_flutter.dart';
 import '../../../../core/errors/exceptions.dart';
 import '../../../auth/data/models/user_model.dart';
 import '../../../home/data/models/category_model.dart';
+import '../../../order/data/models/order_model.dart';
 import '../../../shop/data/models/shop_model.dart';
 import '../../../worker/data/models/worker_model.dart';
 import '../../domain/entities/admin_stats_entity.dart';
@@ -29,15 +30,19 @@ abstract class AdminRemoteDataSource {
   Future<void> deleteCategory(String id);
 
   Future<List<WorkerModel>> getPendingWorkers();
+  Future<List<WorkerModel>> getAllWorkers();
   Future<void> approveWorker(String id);
   Future<void> rejectWorker(String id);
 
   Future<List<ShopModel>> getPendingShops();
+  Future<List<ShopModel>> getAllShops();
   Future<void> approveShop(String id);
   Future<void> rejectShop(String id);
 
   Future<List<UserModel>> getUsers();
   Future<void> updateUserRole({required String userId, required String role});
+
+  Future<List<OrderModel>> getOrders();
 }
 
 class AdminRemoteDataSourceImpl implements AdminRemoteDataSource {
@@ -148,6 +153,18 @@ class AdminRemoteDataSourceImpl implements AdminRemoteDataSource {
   }
 
   @override
+  Future<List<WorkerModel>> getAllWorkers() async {
+    try {
+      final rows = await client.from('workers').select(_adminWorkerSelect).order('created_at');
+      return (rows as List)
+          .map((row) => WorkerModel.fromJson(row as Map<String, dynamic>))
+          .toList();
+    } on PostgrestException catch (e) {
+      throw ServerException(e.message);
+    }
+  }
+
+  @override
   Future<void> approveWorker(String id) async {
     try {
       await client.from('workers').update({'is_approved': true}).eq('id', id);
@@ -170,6 +187,18 @@ class AdminRemoteDataSourceImpl implements AdminRemoteDataSource {
     try {
       final rows =
           await client.from('shops').select().eq('is_approved', false).order('created_at');
+      return (rows as List)
+          .map((row) => ShopModel.fromJson(row as Map<String, dynamic>))
+          .toList();
+    } on PostgrestException catch (e) {
+      throw ServerException(e.message);
+    }
+  }
+
+  @override
+  Future<List<ShopModel>> getAllShops() async {
+    try {
+      final rows = await client.from('shops').select().order('created_at');
       return (rows as List)
           .map((row) => ShopModel.fromJson(row as Map<String, dynamic>))
           .toList();
@@ -215,6 +244,18 @@ class AdminRemoteDataSourceImpl implements AdminRemoteDataSource {
   Future<void> updateUserRole({required String userId, required String role}) async {
     try {
       await client.from('profiles').update({'role': role}).eq('id', userId);
+    } on PostgrestException catch (e) {
+      throw ServerException(e.message);
+    }
+  }
+
+  @override
+  Future<List<OrderModel>> getOrders() async {
+    try {
+      final rows = await client.from('orders').select().order('created_at', ascending: false);
+      return (rows as List)
+          .map((row) => OrderModel.fromJson(row as Map<String, dynamic>))
+          .toList();
     } on PostgrestException catch (e) {
       throw ServerException(e.message);
     }

@@ -7,8 +7,11 @@ import '../../features/auth/presentation/screens/login_screen.dart';
 import '../../features/auth/presentation/screens/otp_screen.dart';
 import '../../features/auth/presentation/screens/phone_login_screen.dart';
 import '../../features/auth/presentation/screens/profile_screen.dart';
+import '../../features/admin/presentation/screens/admin_all_shops_screen.dart';
+import '../../features/admin/presentation/screens/admin_all_workers_screen.dart';
 import '../../features/admin/presentation/screens/admin_categories_screen.dart';
 import '../../features/admin/presentation/screens/admin_home_screen.dart';
+import '../../features/admin/presentation/screens/admin_orders_screen.dart';
 import '../../features/admin/presentation/screens/admin_pending_shops_screen.dart';
 import '../../features/admin/presentation/screens/admin_pending_workers_screen.dart';
 import '../../features/admin/presentation/screens/admin_users_screen.dart';
@@ -178,6 +181,21 @@ final appRouterProvider = Provider<GoRouter>((ref) {
         path: '/admin/users',
         name: 'admin-users',
         builder: (context, state) => const AdminUsersScreen(),
+      ),
+      GoRoute(
+        path: '/admin/all-workers',
+        name: 'admin-all-workers',
+        builder: (context, state) => const AdminAllWorkersScreen(),
+      ),
+      GoRoute(
+        path: '/admin/all-shops',
+        name: 'admin-all-shops',
+        builder: (context, state) => const AdminAllShopsScreen(),
+      ),
+      GoRoute(
+        path: '/admin/orders',
+        name: 'admin-orders',
+        builder: (context, state) => const AdminOrdersScreen(),
       ),
       GoRoute(
         path: '/ai-assistant',

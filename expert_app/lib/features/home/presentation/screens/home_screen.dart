@@ -18,6 +18,7 @@ import '../../../worker/presentation/widgets/worker_card.dart';
 import '../../domain/entities/recently_viewed_entity.dart';
 import '../providers/home_providers.dart';
 import '../widgets/category_chip.dart';
+import '../widgets/category_filter_sheet.dart';
 import '../widgets/promo_banner.dart';
 import '../widgets/section_header.dart';
 
@@ -98,7 +99,13 @@ class HomeScreen extends ConsumerWidget {
           children: [
             Padding(
               padding: const EdgeInsets.fromLTRB(16, 12, 16, 4),
-              child: _SearchBox(hint: l10n.searchHint),
+              child: Row(
+                children: [
+                  Expanded(child: _SearchBox(hint: l10n.searchHint)),
+                  const SizedBox(width: 8),
+                  _FilterButton(tooltip: l10n.filterButtonTooltip),
+                ],
+              ),
             ),
             PromoBanner(title: l10n.promoBannerTitle, subtitle: l10n.promoBannerSubtitle),
             const SizedBox(height: 12),
@@ -377,6 +384,37 @@ class _SearchBox extends StatelessWidget {
             const SizedBox(width: 8),
             Text(hint, style: theme.textTheme.bodyMedium?.copyWith(color: theme.colorScheme.outline)),
           ],
+        ),
+      ),
+    );
+  }
+}
+
+class _FilterButton extends StatelessWidget {
+  final String tooltip;
+
+  const _FilterButton({required this.tooltip});
+
+  @override
+  Widget build(BuildContext context) {
+    final theme = Theme.of(context);
+    return Tooltip(
+      message: tooltip,
+      child: InkWell(
+        borderRadius: BorderRadius.circular(12),
+        onTap: () => showModalBottomSheet(
+          context: context,
+          isScrollControlled: true,
+          builder: (_) => const CategoryFilterSheet(),
+        ),
+        child: Container(
+          padding: const EdgeInsets.all(13),
+          decoration: BoxDecoration(
+            color: theme.colorScheme.surface,
+            borderRadius: BorderRadius.circular(12),
+            border: Border.all(color: theme.dividerColor),
+          ),
+          child: Icon(Icons.filter_list, color: theme.colorScheme.outline),
         ),
       ),
     );

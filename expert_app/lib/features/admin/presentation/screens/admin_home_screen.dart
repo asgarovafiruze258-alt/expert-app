@@ -62,21 +62,43 @@ class _AdminDashboard extends ConsumerWidget {
               crossAxisSpacing: 12,
               childAspectRatio: 1.5,
               children: [
-                _StatCard(label: l10n.adminStatUsers, value: data.userCount),
-                _StatCard(label: l10n.adminStatWorkers, value: data.workerCount),
+                _StatCard(
+                  label: l10n.adminStatUsers,
+                  value: data.userCount,
+                  onTap: () => context.push('/admin/users'),
+                ),
+                _StatCard(
+                  label: l10n.adminStatWorkers,
+                  value: data.workerCount,
+                  onTap: () => context.push('/admin/all-workers'),
+                ),
                 _StatCard(
                   label: l10n.adminStatPendingWorkers,
                   value: data.pendingWorkerCount,
                   highlight: data.pendingWorkerCount > 0,
+                  onTap: () => context.push('/admin/workers'),
                 ),
-                _StatCard(label: l10n.adminStatShops, value: data.shopCount),
+                _StatCard(
+                  label: l10n.adminStatShops,
+                  value: data.shopCount,
+                  onTap: () => context.push('/admin/all-shops'),
+                ),
                 _StatCard(
                   label: l10n.adminStatPendingShops,
                   value: data.pendingShopCount,
                   highlight: data.pendingShopCount > 0,
+                  onTap: () => context.push('/admin/shops'),
                 ),
-                _StatCard(label: l10n.adminStatMaterials, value: data.materialCount),
-                _StatCard(label: l10n.adminStatOrders, value: data.orderCount),
+                _StatCard(
+                  label: l10n.adminStatMaterials,
+                  value: data.materialCount,
+                  onTap: () => context.push('/materials'),
+                ),
+                _StatCard(
+                  label: l10n.adminStatOrders,
+                  value: data.orderCount,
+                  onTap: () => context.push('/admin/orders'),
+                ),
               ],
             ),
           ),
@@ -111,24 +133,34 @@ class _StatCard extends StatelessWidget {
   final String label;
   final int value;
   final bool highlight;
+  final VoidCallback? onTap;
 
-  const _StatCard({required this.label, required this.value, this.highlight = false});
+  const _StatCard({
+    required this.label,
+    required this.value,
+    this.highlight = false,
+    this.onTap,
+  });
 
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
     return Card(
       color: highlight ? theme.colorScheme.errorContainer : null,
-      child: Padding(
-        padding: const EdgeInsets.all(12),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Text('$value', style: theme.textTheme.headlineSmall),
-            const SizedBox(height: 4),
-            Text(label, style: theme.textTheme.bodySmall, maxLines: 2, overflow: TextOverflow.ellipsis),
-          ],
+      clipBehavior: Clip.antiAlias,
+      child: InkWell(
+        onTap: onTap,
+        child: Padding(
+          padding: const EdgeInsets.all(12),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Text('$value', style: theme.textTheme.headlineSmall),
+              const SizedBox(height: 4),
+              Text(label, style: theme.textTheme.bodySmall, maxLines: 2, overflow: TextOverflow.ellipsis),
+            ],
+          ),
         ),
       ),
     );

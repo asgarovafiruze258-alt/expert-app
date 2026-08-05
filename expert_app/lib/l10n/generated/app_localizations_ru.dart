@@ -179,6 +179,12 @@ class AppLocalizationsRu extends AppLocalizations {
   String get searchHint => 'Поиск мастеров или материалов...';
 
   @override
+  String get filterButtonTooltip => 'Фильтр';
+
+  @override
+  String get filterSheetTitle => 'Фильтр по категории';
+
+  @override
   String get sectionCategories => 'Категории';
 
   @override
@@ -578,6 +584,48 @@ class AppLocalizationsRu extends AppLocalizations {
 
   @override
   String get adminMenuUsers => 'Пользователи';
+
+  @override
+  String get adminMenuAllWorkers => 'Все мастера';
+
+  @override
+  String get adminMenuAllShops => 'Все магазины';
+
+  @override
+  String get adminNoWorkers => 'Нет мастеров';
+
+  @override
+  String get adminNoShops => 'Нет магазинов';
+
+  @override
+  String get adminNoOrders => 'Нет заказов';
+
+  @override
+  String get adminApprovedLabel => 'Утверждено';
+
+  @override
+  String get adminPendingLabel => 'На утверждении';
+
+  @override
+  String get adminOrderStatusPending => 'На утверждении';
+
+  @override
+  String get adminOrderStatusAccepted => 'Принят';
+
+  @override
+  String get adminOrderStatusInProgress => 'В процессе';
+
+  @override
+  String get adminOrderStatusCompleted => 'Завершён';
+
+  @override
+  String get adminOrderStatusCancelled => 'Отменён';
+
+  @override
+  String get adminOrderTargetWorker => 'Заказ мастера';
+
+  @override
+  String get adminOrderTargetMaterial => 'Заказ материала';
 
   @override
   String get adminAddCategory => 'Добавить категорию';

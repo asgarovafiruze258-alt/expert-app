@@ -179,6 +179,12 @@ class AppLocalizationsAz extends AppLocalizations {
   String get searchHint => 'Usta və ya material axtar...';
 
   @override
+  String get filterButtonTooltip => 'Filtr';
+
+  @override
+  String get filterSheetTitle => 'Kateqoriyaya görə filtrlə';
+
+  @override
   String get sectionCategories => 'Kateqoriyalar';
 
   @override
@@ -577,6 +583,48 @@ class AppLocalizationsAz extends AppLocalizations {
 
   @override
   String get adminMenuUsers => 'İstifadəçilər';
+
+  @override
+  String get adminMenuAllWorkers => 'Bütün ustalar';
+
+  @override
+  String get adminMenuAllShops => 'Bütün mağazalar';
+
+  @override
+  String get adminNoWorkers => 'Usta yoxdur';
+
+  @override
+  String get adminNoShops => 'Mağaza yoxdur';
+
+  @override
+  String get adminNoOrders => 'Sifariş yoxdur';
+
+  @override
+  String get adminApprovedLabel => 'Təsdiqlənib';
+
+  @override
+  String get adminPendingLabel => 'Gözləmədə';
+
+  @override
+  String get adminOrderStatusPending => 'Gözləmədə';
+
+  @override
+  String get adminOrderStatusAccepted => 'Qəbul edilib';
+
+  @override
+  String get adminOrderStatusInProgress => 'İcra olunur';
+
+  @override
+  String get adminOrderStatusCompleted => 'Tamamlanıb';
+
+  @override
+  String get adminOrderStatusCancelled => 'Ləğv edilib';
+
+  @override
+  String get adminOrderTargetWorker => 'Usta sifarişi';
+
+  @override
+  String get adminOrderTargetMaterial => 'Material sifarişi';
 
   @override
   String get adminAddCategory => 'Kateqoriya əlavə et';

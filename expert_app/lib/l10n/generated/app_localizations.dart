@@ -430,6 +430,18 @@ abstract class AppLocalizations {
   /// **'Usta və ya material axtar...'**
   String get searchHint;
 
+  /// No description provided for @filterButtonTooltip.
+  ///
+  /// In az, this message translates to:
+  /// **'Filtr'**
+  String get filterButtonTooltip;
+
+  /// No description provided for @filterSheetTitle.
+  ///
+  /// In az, this message translates to:
+  /// **'Kateqoriyaya görə filtrlə'**
+  String get filterSheetTitle;
+
   /// No description provided for @sectionCategories.
   ///
   /// In az, this message translates to:
@@ -1203,6 +1215,90 @@ abstract class AppLocalizations {
   /// In az, this message translates to:
   /// **'İstifadəçilər'**
   String get adminMenuUsers;
+
+  /// No description provided for @adminMenuAllWorkers.
+  ///
+  /// In az, this message translates to:
+  /// **'Bütün ustalar'**
+  String get adminMenuAllWorkers;
+
+  /// No description provided for @adminMenuAllShops.
+  ///
+  /// In az, this message translates to:
+  /// **'Bütün mağazalar'**
+  String get adminMenuAllShops;
+
+  /// No description provided for @adminNoWorkers.
+  ///
+  /// In az, this message translates to:
+  /// **'Usta yoxdur'**
+  String get adminNoWorkers;
+
+  /// No description provided for @adminNoShops.
+  ///
+  /// In az, this message translates to:
+  /// **'Mağaza yoxdur'**
+  String get adminNoShops;
+
+  /// No description provided for @adminNoOrders.
+  ///
+  /// In az, this message translates to:
+  /// **'Sifariş yoxdur'**
+  String get adminNoOrders;
+
+  /// No description provided for @adminApprovedLabel.
+  ///
+  /// In az, this message translates to:
+  /// **'Təsdiqlənib'**
+  String get adminApprovedLabel;
+
+  /// No description provided for @adminPendingLabel.
+  ///
+  /// In az, this message translates to:
+  /// **'Gözləmədə'**
+  String get adminPendingLabel;
+
+  /// No description provided for @adminOrderStatusPending.
+  ///
+  /// In az, this message translates to:
+  /// **'Gözləmədə'**
+  String get adminOrderStatusPending;
+
+  /// No description provided for @adminOrderStatusAccepted.
+  ///
+  /// In az, this message translates to:
+  /// **'Qəbul edilib'**
+  String get adminOrderStatusAccepted;
+
+  /// No description provided for @adminOrderStatusInProgress.
+  ///
+  /// In az, this message translates to:
+  /// **'İcra olunur'**
+  String get adminOrderStatusInProgress;
+
+  /// No description provided for @adminOrderStatusCompleted.
+  ///
+  /// In az, this message translates to:
+  /// **'Tamamlanıb'**
+  String get adminOrderStatusCompleted;
+
+  /// No description provided for @adminOrderStatusCancelled.
+  ///
+  /// In az, this message translates to:
+  /// **'Ləğv edilib'**
+  String get adminOrderStatusCancelled;
+
+  /// No description provided for @adminOrderTargetWorker.
+  ///
+  /// In az, this message translates to:
+  /// **'Usta sifarişi'**
+  String get adminOrderTargetWorker;
+
+  /// No description provided for @adminOrderTargetMaterial.
+  ///
+  /// In az, this message translates to:
+  /// **'Material sifarişi'**
+  String get adminOrderTargetMaterial;
 
   /// No description provided for @adminAddCategory.
   ///

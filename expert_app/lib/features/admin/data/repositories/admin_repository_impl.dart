@@ -4,6 +4,7 @@ import '../../../../core/errors/exceptions.dart';
 import '../../../../core/errors/failure.dart';
 import '../../../auth/domain/entities/user_entity.dart';
 import '../../../home/domain/entities/category_entity.dart';
+import '../../../order/domain/entities/order_entity.dart';
 import '../../../shop/domain/entities/shop_entity.dart';
 import '../../../worker/domain/entities/worker_entity.dart';
 import '../../domain/entities/admin_stats_entity.dart';
@@ -101,6 +102,16 @@ class AdminRepositoryImpl implements AdminRepository {
   }
 
   @override
+  Future<Either<Failure, List<WorkerEntity>>> getAllWorkers() async {
+    try {
+      final models = await remoteDataSource.getAllWorkers();
+      return Right(models.map((m) => m.toEntity()).toList());
+    } catch (e) {
+      return Left(_mapException(e));
+    }
+  }
+
+  @override
   Future<Either<Failure, Unit>> approveWorker(String id) async {
     try {
       await remoteDataSource.approveWorker(id);
@@ -124,6 +135,16 @@ class AdminRepositoryImpl implements AdminRepository {
   Future<Either<Failure, List<ShopEntity>>> getPendingShops() async {
     try {
       final models = await remoteDataSource.getPendingShops();
+      return Right(models.map((m) => m.toEntity()).toList());
+    } catch (e) {
+      return Left(_mapException(e));
+    }
+  }
+
+  @override
+  Future<Either<Failure, List<ShopEntity>>> getAllShops() async {
+    try {
+      final models = await remoteDataSource.getAllShops();
       return Right(models.map((m) => m.toEntity()).toList());
     } catch (e) {
       return Left(_mapException(e));
@@ -171,6 +192,16 @@ class AdminRepositoryImpl implements AdminRepository {
       };
       await remoteDataSource.updateUserRole(userId: userId, role: roleValues[role]!);
       return const Right(unit);
+    } catch (e) {
+      return Left(_mapException(e));
+    }
+  }
+
+  @override
+  Future<Either<Failure, List<OrderEntity>>> getOrders() async {
+    try {
+      final models = await remoteDataSource.getOrders();
+      return Right(models.map((m) => m.toEntity()).toList());
     } catch (e) {
       return Left(_mapException(e));
     }
