@@ -6,6 +6,8 @@ import '../../../../core/errors/failure.dart';
 import '../../../../core/widgets/error_view.dart';
 import '../../../../core/widgets/loading_indicator.dart';
 import '../../../../l10n/generated/app_localizations.dart';
+import '../../../shop/presentation/providers/shop_providers.dart';
+import '../../../worker/presentation/providers/worker_providers.dart';
 import '../../domain/entities/user_entity.dart';
 import '../providers/auth_providers.dart';
 
@@ -81,6 +83,12 @@ class _ProfileScreenState extends ConsumerState<ProfileScreen> {
                     icon: const Icon(Icons.favorite_border),
                     label: Text(l10n.profileFavoritesLink),
                   ),
+                  if (user.role != UserRole.admin) ...[
+                    const SizedBox(height: 8),
+                    _WorkerProfileSection(l10n: l10n),
+                    const SizedBox(height: 8),
+                    _ShopSection(l10n: l10n),
+                  ],
                   if (user.role == UserRole.admin) ...[
                     const SizedBox(height: 8),
                     OutlinedButton.icon(
@@ -101,6 +109,94 @@ class _ProfileScreenState extends ConsumerState<ProfileScreen> {
           );
         },
       ),
+    );
+  }
+}
+
+class _WorkerProfileSection extends ConsumerWidget {
+  final AppLocalizations l10n;
+
+  const _WorkerProfileSection({required this.l10n});
+
+  @override
+  Widget build(BuildContext context, WidgetRef ref) {
+    final workerProfileAsync = ref.watch(myWorkerProfileProvider);
+
+    return workerProfileAsync.when(
+      loading: () => const SizedBox.shrink(),
+      error: (_, _) => const SizedBox.shrink(),
+      data: (workerProfile) {
+        if (workerProfile == null) {
+          return OutlinedButton.icon(
+            onPressed: () => context.push('/become-worker'),
+            icon: const Icon(Icons.handyman_outlined),
+            label: Text(l10n.profileBecomeWorkerLink),
+          );
+        }
+        return Padding(
+          padding: const EdgeInsets.symmetric(vertical: 4),
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Icon(
+                workerProfile.isApproved ? Icons.verified_outlined : Icons.hourglass_top_outlined,
+                size: 18,
+                color: Theme.of(context).colorScheme.secondary,
+              ),
+              const SizedBox(width: 6),
+              Text(
+                workerProfile.isApproved
+                    ? l10n.profileWorkerStatusApproved
+                    : l10n.profileWorkerStatusPending,
+                style: Theme.of(context).textTheme.bodySmall,
+              ),
+            ],
+          ),
+        );
+      },
+    );
+  }
+}
+
+class _ShopSection extends ConsumerWidget {
+  final AppLocalizations l10n;
+
+  const _ShopSection({required this.l10n});
+
+  @override
+  Widget build(BuildContext context, WidgetRef ref) {
+    final shopAsync = ref.watch(myShopProvider);
+
+    return shopAsync.when(
+      loading: () => const SizedBox.shrink(),
+      error: (_, _) => const SizedBox.shrink(),
+      data: (shop) {
+        if (shop == null) {
+          return OutlinedButton.icon(
+            onPressed: () => context.push('/open-shop'),
+            icon: const Icon(Icons.storefront_outlined),
+            label: Text(l10n.profileOpenShopLink),
+          );
+        }
+        return Padding(
+          padding: const EdgeInsets.symmetric(vertical: 4),
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Icon(
+                shop.isApproved ? Icons.verified_outlined : Icons.hourglass_top_outlined,
+                size: 18,
+                color: Theme.of(context).colorScheme.secondary,
+              ),
+              const SizedBox(width: 6),
+              Text(
+                shop.isApproved ? l10n.profileShopStatusApproved : l10n.profileShopStatusPending,
+                style: Theme.of(context).textTheme.bodySmall,
+              ),
+            ],
+          ),
+        );
+      },
     );
   }
 }

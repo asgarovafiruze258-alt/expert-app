@@ -175,13 +175,13 @@ abstract class AppLocalizations {
   /// No description provided for @navMaterials.
   ///
   /// In az, this message translates to:
-  /// **'Materiallar'**
+  /// **'Material'**
   String get navMaterials;
 
   /// No description provided for @navProjects.
   ///
   /// In az, this message translates to:
-  /// **'Layihələrim'**
+  /// **'Layihələr'**
   String get navProjects;
 
   /// No description provided for @navProfile.
@@ -669,6 +669,156 @@ abstract class AppLocalizations {
   /// In az, this message translates to:
   /// **'Seçilmişlərim'**
   String get profileFavoritesLink;
+
+  /// No description provided for @profileBecomeWorkerLink.
+  ///
+  /// In az, this message translates to:
+  /// **'Usta kimi qeydiyyatdan keç'**
+  String get profileBecomeWorkerLink;
+
+  /// No description provided for @profileWorkerStatusPending.
+  ///
+  /// In az, this message translates to:
+  /// **'Usta profiliniz təsdiq gözləyir'**
+  String get profileWorkerStatusPending;
+
+  /// No description provided for @profileWorkerStatusApproved.
+  ///
+  /// In az, this message translates to:
+  /// **'Siz təsdiqlənmiş ustasınız'**
+  String get profileWorkerStatusApproved;
+
+  /// No description provided for @profileOpenShopLink.
+  ///
+  /// In az, this message translates to:
+  /// **'Mağaza aç'**
+  String get profileOpenShopLink;
+
+  /// No description provided for @profileShopStatusPending.
+  ///
+  /// In az, this message translates to:
+  /// **'Mağazanız təsdiq gözləyir'**
+  String get profileShopStatusPending;
+
+  /// No description provided for @profileShopStatusApproved.
+  ///
+  /// In az, this message translates to:
+  /// **'Mağazanız təsdiqlənib'**
+  String get profileShopStatusApproved;
+
+  /// No description provided for @becomeWorkerTitle.
+  ///
+  /// In az, this message translates to:
+  /// **'Usta profili'**
+  String get becomeWorkerTitle;
+
+  /// No description provided for @becomeWorkerBioLabel.
+  ///
+  /// In az, this message translates to:
+  /// **'Özünüz haqqında'**
+  String get becomeWorkerBioLabel;
+
+  /// No description provided for @becomeWorkerExperienceLabel.
+  ///
+  /// In az, this message translates to:
+  /// **'Təcrübə (il)'**
+  String get becomeWorkerExperienceLabel;
+
+  /// No description provided for @becomeWorkerPriceFromLabel.
+  ///
+  /// In az, this message translates to:
+  /// **'Qiymət, min (₼)'**
+  String get becomeWorkerPriceFromLabel;
+
+  /// No description provided for @becomeWorkerPriceToLabel.
+  ///
+  /// In az, this message translates to:
+  /// **'Qiymət, maks (₼)'**
+  String get becomeWorkerPriceToLabel;
+
+  /// No description provided for @becomeWorkerServiceAreasLabel.
+  ///
+  /// In az, this message translates to:
+  /// **'Xidmət bölgələri (vergüllə ayırın)'**
+  String get becomeWorkerServiceAreasLabel;
+
+  /// No description provided for @becomeWorkerPhoneLabel.
+  ///
+  /// In az, this message translates to:
+  /// **'Əlaqə nömrəsi'**
+  String get becomeWorkerPhoneLabel;
+
+  /// No description provided for @becomeWorkerCategoriesLabel.
+  ///
+  /// In az, this message translates to:
+  /// **'İxtisas sahələri'**
+  String get becomeWorkerCategoriesLabel;
+
+  /// No description provided for @becomeWorkerSubmitButton.
+  ///
+  /// In az, this message translates to:
+  /// **'Göndər'**
+  String get becomeWorkerSubmitButton;
+
+  /// No description provided for @becomeWorkerSuccess.
+  ///
+  /// In az, this message translates to:
+  /// **'Profiliniz göndərildi, admin təsdiqini gözləyir'**
+  String get becomeWorkerSuccess;
+
+  /// No description provided for @becomeWorkerValidationError.
+  ///
+  /// In az, this message translates to:
+  /// **'Bio doldurun və ən azı bir ixtisas sahəsi seçin'**
+  String get becomeWorkerValidationError;
+
+  /// No description provided for @openShopTitle.
+  ///
+  /// In az, this message translates to:
+  /// **'Mağaza aç'**
+  String get openShopTitle;
+
+  /// No description provided for @openShopNameLabel.
+  ///
+  /// In az, this message translates to:
+  /// **'Mağazanın adı'**
+  String get openShopNameLabel;
+
+  /// No description provided for @openShopAddressLabel.
+  ///
+  /// In az, this message translates to:
+  /// **'Ünvan'**
+  String get openShopAddressLabel;
+
+  /// No description provided for @openShopRayonLabel.
+  ///
+  /// In az, this message translates to:
+  /// **'Rayon'**
+  String get openShopRayonLabel;
+
+  /// No description provided for @openShopCategoriesLabel.
+  ///
+  /// In az, this message translates to:
+  /// **'Satılan material kateqoriyaları'**
+  String get openShopCategoriesLabel;
+
+  /// No description provided for @openShopSubmitButton.
+  ///
+  /// In az, this message translates to:
+  /// **'Göndər'**
+  String get openShopSubmitButton;
+
+  /// No description provided for @openShopSuccess.
+  ///
+  /// In az, this message translates to:
+  /// **'Mağazanız göndərildi, admin təsdiqini gözləyir'**
+  String get openShopSuccess;
+
+  /// No description provided for @openShopValidationError.
+  ///
+  /// In az, this message translates to:
+  /// **'Mağaza adını daxil edin'**
+  String get openShopValidationError;
 
   /// No description provided for @projectCreateTitle.
   ///

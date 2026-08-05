@@ -25,7 +25,9 @@ import '../../features/notification/presentation/screens/notifications_screen.da
 import '../../features/order/presentation/screens/cart_screen.dart';
 import '../../features/project/presentation/screens/project_detail_screen.dart';
 import '../../features/project/presentation/screens/project_list_screen.dart';
+import '../../features/shop/presentation/screens/open_shop_screen.dart';
 import '../../features/shop/presentation/screens/shop_detail_screen.dart';
+import '../../features/worker/presentation/screens/become_worker_screen.dart';
 import '../../features/worker/presentation/screens/worker_detail_screen.dart';
 import '../../features/worker/presentation/screens/worker_list_screen.dart';
 import 'go_router_refresh_stream.dart';
@@ -84,6 +86,11 @@ final appRouterProvider = Provider<GoRouter>((ref) {
         builder: (context, state) => WorkerDetailScreen(workerId: state.pathParameters['id']!),
       ),
       GoRoute(
+        path: '/become-worker',
+        name: 'become-worker',
+        builder: (context, state) => const BecomeWorkerScreen(),
+      ),
+      GoRoute(
         path: '/materials',
         name: 'materials',
         builder: (context, state) {
@@ -103,6 +110,11 @@ final appRouterProvider = Provider<GoRouter>((ref) {
         path: '/shops/:id',
         name: 'shop-detail',
         builder: (context, state) => ShopDetailScreen(shopId: state.pathParameters['id']!),
+      ),
+      GoRoute(
+        path: '/open-shop',
+        name: 'open-shop',
+        builder: (context, state) => const OpenShopScreen(),
       ),
       GoRoute(
         path: '/cart',

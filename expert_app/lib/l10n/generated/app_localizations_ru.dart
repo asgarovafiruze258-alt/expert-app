@@ -304,6 +304,87 @@ class AppLocalizationsRu extends AppLocalizations {
   String get profileFavoritesLink => 'Мои избранные';
 
   @override
+  String get profileBecomeWorkerLink => 'Зарегистрироваться как мастер';
+
+  @override
+  String get profileWorkerStatusPending =>
+      'Ваш профиль мастера ожидает подтверждения';
+
+  @override
+  String get profileWorkerStatusApproved => 'Вы подтверждённый мастер';
+
+  @override
+  String get profileOpenShopLink => 'Открыть магазин';
+
+  @override
+  String get profileShopStatusPending => 'Ваш магазин ожидает подтверждения';
+
+  @override
+  String get profileShopStatusApproved => 'Ваш магазин подтверждён';
+
+  @override
+  String get becomeWorkerTitle => 'Профиль мастера';
+
+  @override
+  String get becomeWorkerBioLabel => 'О себе';
+
+  @override
+  String get becomeWorkerExperienceLabel => 'Опыт (лет)';
+
+  @override
+  String get becomeWorkerPriceFromLabel => 'Цена от (₼)';
+
+  @override
+  String get becomeWorkerPriceToLabel => 'Цена до (₼)';
+
+  @override
+  String get becomeWorkerServiceAreasLabel =>
+      'Районы обслуживания (через запятую)';
+
+  @override
+  String get becomeWorkerPhoneLabel => 'Контактный телефон';
+
+  @override
+  String get becomeWorkerCategoriesLabel => 'Специализации';
+
+  @override
+  String get becomeWorkerSubmitButton => 'Отправить';
+
+  @override
+  String get becomeWorkerSuccess =>
+      'Профиль отправлен, ожидайте подтверждения администратора';
+
+  @override
+  String get becomeWorkerValidationError =>
+      'Заполните описание и выберите хотя бы одну специализацию';
+
+  @override
+  String get openShopTitle => 'Открыть магазин';
+
+  @override
+  String get openShopNameLabel => 'Название магазина';
+
+  @override
+  String get openShopAddressLabel => 'Адрес';
+
+  @override
+  String get openShopRayonLabel => 'Район';
+
+  @override
+  String get openShopCategoriesLabel =>
+      'Категории материалов, которые вы продаёте';
+
+  @override
+  String get openShopSubmitButton => 'Отправить';
+
+  @override
+  String get openShopSuccess =>
+      'Магазин отправлен, ожидайте подтверждения администратора';
+
+  @override
+  String get openShopValidationError => 'Введите название магазина';
+
+  @override
   String get projectCreateTitle => 'Новый проект';
 
   @override

@@ -1,10 +1,24 @@
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 import 'app_colors.dart';
 import 'app_text_styles.dart';
 
 class AppTheme {
   const AppTheme._();
+
+  static NavigationBarThemeData _navigationBarTheme(Color labelColor) {
+    final labelStyle = GoogleFonts.inter(
+      fontSize: 11,
+      fontWeight: FontWeight.w500,
+      color: labelColor,
+      height: 1.1,
+    );
+    return NavigationBarThemeData(
+      height: 68,
+      labelTextStyle: WidgetStateProperty.all(labelStyle),
+    );
+  }
 
   static ThemeData get light {
     final colorScheme = const ColorScheme.light(
@@ -25,6 +39,7 @@ class AppTheme {
       colorScheme: colorScheme,
       scaffoldBackgroundColor: AppColors.lightBackground,
       textTheme: AppTextStyles.textTheme(AppColors.lightOnSurface),
+      navigationBarTheme: _navigationBarTheme(AppColors.lightOnSurface),
       appBarTheme: const AppBarTheme(
         backgroundColor: AppColors.lightSurface,
         foregroundColor: AppColors.lightOnSurface,
@@ -77,6 +92,7 @@ class AppTheme {
       colorScheme: colorScheme,
       scaffoldBackgroundColor: AppColors.darkBackground,
       textTheme: AppTextStyles.textTheme(AppColors.darkOnSurface),
+      navigationBarTheme: _navigationBarTheme(AppColors.darkOnSurface),
       appBarTheme: const AppBarTheme(
         backgroundColor: AppColors.darkSurface,
         foregroundColor: AppColors.darkOnSurface,

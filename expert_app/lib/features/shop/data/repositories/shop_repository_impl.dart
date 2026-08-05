@@ -15,6 +15,7 @@ class ShopRepositoryImpl implements ShopRepository {
   Failure _mapException(Object error) {
     if (error is ServerException) return Failure.server(message: error.message);
     if (error is NetworkException) return Failure.network(message: error.message);
+    if (error is UnauthorizedException) return Failure.unauthorized(message: error.message);
     return Failure.unexpected(message: error.toString());
   }
 
@@ -33,6 +34,36 @@ class ShopRepositoryImpl implements ShopRepository {
     try {
       final models = await remoteDataSource.getShopMaterials(shopId);
       return Right(models.map((m) => m.toEntity()).toList());
+    } catch (e) {
+      return Left(_mapException(e));
+    }
+  }
+
+  @override
+  Future<Either<Failure, ShopEntity?>> getMyShop() async {
+    try {
+      final model = await remoteDataSource.getMyShop();
+      return Right(model?.toEntity());
+    } catch (e) {
+      return Left(_mapException(e));
+    }
+  }
+
+  @override
+  Future<Either<Failure, ShopEntity>> createShop({
+    required String name,
+    String? address,
+    String? rayon,
+    required List<String> categoryIds,
+  }) async {
+    try {
+      final model = await remoteDataSource.createShop(
+        name: name,
+        address: address,
+        rayon: rayon,
+        categoryIds: categoryIds,
+      );
+      return Right(model.toEntity());
     } catch (e) {
       return Left(_mapException(e));
     }

@@ -304,6 +304,85 @@ class AppLocalizationsEn extends AppLocalizations {
   String get profileFavoritesLink => 'My favorites';
 
   @override
+  String get profileBecomeWorkerLink => 'Register as a worker';
+
+  @override
+  String get profileWorkerStatusPending =>
+      'Your worker profile is awaiting approval';
+
+  @override
+  String get profileWorkerStatusApproved => 'You are an approved worker';
+
+  @override
+  String get profileOpenShopLink => 'Open a shop';
+
+  @override
+  String get profileShopStatusPending => 'Your shop is awaiting approval';
+
+  @override
+  String get profileShopStatusApproved => 'Your shop is approved';
+
+  @override
+  String get becomeWorkerTitle => 'Worker profile';
+
+  @override
+  String get becomeWorkerBioLabel => 'About you';
+
+  @override
+  String get becomeWorkerExperienceLabel => 'Experience (years)';
+
+  @override
+  String get becomeWorkerPriceFromLabel => 'Price from (₼)';
+
+  @override
+  String get becomeWorkerPriceToLabel => 'Price to (₼)';
+
+  @override
+  String get becomeWorkerServiceAreasLabel => 'Service areas (comma-separated)';
+
+  @override
+  String get becomeWorkerPhoneLabel => 'Contact phone';
+
+  @override
+  String get becomeWorkerCategoriesLabel => 'Specialties';
+
+  @override
+  String get becomeWorkerSubmitButton => 'Submit';
+
+  @override
+  String get becomeWorkerSuccess =>
+      'Your profile was submitted, awaiting admin approval';
+
+  @override
+  String get becomeWorkerValidationError =>
+      'Fill in your bio and pick at least one specialty';
+
+  @override
+  String get openShopTitle => 'Open a shop';
+
+  @override
+  String get openShopNameLabel => 'Shop name';
+
+  @override
+  String get openShopAddressLabel => 'Address';
+
+  @override
+  String get openShopRayonLabel => 'District';
+
+  @override
+  String get openShopCategoriesLabel => 'Material categories you sell';
+
+  @override
+  String get openShopSubmitButton => 'Submit';
+
+  @override
+  String get openShopSuccess =>
+      'Your shop was submitted, awaiting admin approval';
+
+  @override
+  String get openShopValidationError => 'Enter a shop name';
+
+  @override
   String get projectCreateTitle => 'New project';
 
   @override

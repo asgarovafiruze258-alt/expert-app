@@ -46,10 +46,10 @@ class AppLocalizationsAz extends AppLocalizations {
   String get navWorkers => 'Ustalar';
 
   @override
-  String get navMaterials => 'Materiallar';
+  String get navMaterials => 'Material';
 
   @override
-  String get navProjects => 'Layihələrim';
+  String get navProjects => 'Layihələr';
 
   @override
   String get navProfile => 'Profil';
@@ -303,6 +303,85 @@ class AppLocalizationsAz extends AppLocalizations {
 
   @override
   String get profileFavoritesLink => 'Seçilmişlərim';
+
+  @override
+  String get profileBecomeWorkerLink => 'Usta kimi qeydiyyatdan keç';
+
+  @override
+  String get profileWorkerStatusPending => 'Usta profiliniz təsdiq gözləyir';
+
+  @override
+  String get profileWorkerStatusApproved => 'Siz təsdiqlənmiş ustasınız';
+
+  @override
+  String get profileOpenShopLink => 'Mağaza aç';
+
+  @override
+  String get profileShopStatusPending => 'Mağazanız təsdiq gözləyir';
+
+  @override
+  String get profileShopStatusApproved => 'Mağazanız təsdiqlənib';
+
+  @override
+  String get becomeWorkerTitle => 'Usta profili';
+
+  @override
+  String get becomeWorkerBioLabel => 'Özünüz haqqında';
+
+  @override
+  String get becomeWorkerExperienceLabel => 'Təcrübə (il)';
+
+  @override
+  String get becomeWorkerPriceFromLabel => 'Qiymət, min (₼)';
+
+  @override
+  String get becomeWorkerPriceToLabel => 'Qiymət, maks (₼)';
+
+  @override
+  String get becomeWorkerServiceAreasLabel =>
+      'Xidmət bölgələri (vergüllə ayırın)';
+
+  @override
+  String get becomeWorkerPhoneLabel => 'Əlaqə nömrəsi';
+
+  @override
+  String get becomeWorkerCategoriesLabel => 'İxtisas sahələri';
+
+  @override
+  String get becomeWorkerSubmitButton => 'Göndər';
+
+  @override
+  String get becomeWorkerSuccess =>
+      'Profiliniz göndərildi, admin təsdiqini gözləyir';
+
+  @override
+  String get becomeWorkerValidationError =>
+      'Bio doldurun və ən azı bir ixtisas sahəsi seçin';
+
+  @override
+  String get openShopTitle => 'Mağaza aç';
+
+  @override
+  String get openShopNameLabel => 'Mağazanın adı';
+
+  @override
+  String get openShopAddressLabel => 'Ünvan';
+
+  @override
+  String get openShopRayonLabel => 'Rayon';
+
+  @override
+  String get openShopCategoriesLabel => 'Satılan material kateqoriyaları';
+
+  @override
+  String get openShopSubmitButton => 'Göndər';
+
+  @override
+  String get openShopSuccess =>
+      'Mağazanız göndərildi, admin təsdiqini gözləyir';
+
+  @override
+  String get openShopValidationError => 'Mağaza adını daxil edin';
 
   @override
   String get projectCreateTitle => 'Yeni layihə';

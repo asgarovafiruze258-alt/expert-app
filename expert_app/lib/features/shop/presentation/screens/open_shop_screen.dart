@@ -1,0 +1,143 @@
+import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+
+import '../../../../core/errors/failure.dart';
+import '../../../../core/widgets/app_button.dart';
+import '../../../../core/widgets/app_text_field.dart';
+import '../../../../core/widgets/error_view.dart';
+import '../../../../core/widgets/loading_indicator.dart';
+import '../../../../l10n/generated/app_localizations.dart';
+import '../../../home/presentation/providers/home_providers.dart';
+import '../providers/shop_providers.dart';
+
+class OpenShopScreen extends ConsumerStatefulWidget {
+  const OpenShopScreen({super.key});
+
+  @override
+  ConsumerState<OpenShopScreen> createState() => _OpenShopScreenState();
+}
+
+class _OpenShopScreenState extends ConsumerState<OpenShopScreen> {
+  final _formKey = GlobalKey<FormState>();
+  final _nameController = TextEditingController();
+  final _addressController = TextEditingController();
+  final _rayonController = TextEditingController();
+  final _selectedCategoryIds = <String>{};
+
+  @override
+  void dispose() {
+    _nameController.dispose();
+    _addressController.dispose();
+    _rayonController.dispose();
+    super.dispose();
+  }
+
+  Future<void> _submit() async {
+    final l10n = AppLocalizations.of(context);
+    final formOk = _formKey.currentState?.validate() ?? false;
+    if (!formOk) {
+      ScaffoldMessenger.of(context)
+        ..hideCurrentSnackBar()
+        ..showSnackBar(SnackBar(content: Text(l10n.openShopValidationError)));
+      return;
+    }
+
+    final success = await ref.read(openShopControllerProvider.notifier).submit(
+          name: _nameController.text.trim(),
+          address: _addressController.text.trim().isEmpty ? null : _addressController.text.trim(),
+          rayon: _rayonController.text.trim().isEmpty ? null : _rayonController.text.trim(),
+          categoryIds: _selectedCategoryIds.toList(),
+        );
+    if (!mounted) return;
+    if (success) {
+      Navigator.of(context).pop();
+      ScaffoldMessenger.of(context)
+        ..hideCurrentSnackBar()
+        ..showSnackBar(SnackBar(content: Text(l10n.openShopSuccess)));
+    }
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    final l10n = AppLocalizations.of(context);
+    final categoriesAsync = ref.watch(materialCategoriesProvider);
+
+    ref.listen(openShopControllerProvider, (previous, next) {
+      final error = next.error;
+      if (error is Failure) {
+        ScaffoldMessenger.of(context)
+          ..hideCurrentSnackBar()
+          ..showSnackBar(SnackBar(content: Text(error.message)));
+      }
+    });
+
+    final isSubmitting = ref.watch(openShopControllerProvider).isLoading;
+
+    return Scaffold(
+      appBar: AppBar(title: Text(l10n.openShopTitle)),
+      body: SafeArea(
+        child: Form(
+          key: _formKey,
+          child: ListView(
+            padding: const EdgeInsets.all(20),
+            children: [
+              AppTextField(
+                controller: _nameController,
+                label: l10n.openShopNameLabel,
+                prefixIcon: Icons.storefront_outlined,
+                validator: (v) => (v == null || v.trim().isEmpty) ? '' : null,
+              ),
+              const SizedBox(height: 12),
+              AppTextField(
+                controller: _addressController,
+                label: l10n.openShopAddressLabel,
+                prefixIcon: Icons.location_on_outlined,
+              ),
+              const SizedBox(height: 12),
+              AppTextField(
+                controller: _rayonController,
+                label: l10n.openShopRayonLabel,
+                prefixIcon: Icons.map_outlined,
+              ),
+              const SizedBox(height: 20),
+              Text(l10n.openShopCategoriesLabel, style: Theme.of(context).textTheme.titleSmall),
+              const SizedBox(height: 8),
+              categoriesAsync.when(
+                loading: () => const LoadingIndicator(),
+                error: (error, _) => ErrorView(
+                  message: error is Failure ? error.message : error.toString(),
+                ),
+                data: (categories) => Wrap(
+                  spacing: 8,
+                  runSpacing: 8,
+                  children: categories.map((category) {
+                    final selected = _selectedCategoryIds.contains(category.id);
+                    return FilterChip(
+                      label: Text(category.name),
+                      selected: selected,
+                      onSelected: (value) {
+                        setState(() {
+                          if (value) {
+                            _selectedCategoryIds.add(category.id);
+                          } else {
+                            _selectedCategoryIds.remove(category.id);
+                          }
+                        });
+                      },
+                    );
+                  }).toList(),
+                ),
+              ),
+              const SizedBox(height: 24),
+              AppButton(
+                label: l10n.openShopSubmitButton,
+                isLoading: isSubmitting,
+                onPressed: _submit,
+              ),
+            ],
+          ),
+        ),
+      ),
+    );
+  }
+}

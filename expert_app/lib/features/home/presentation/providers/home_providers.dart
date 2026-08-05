@@ -39,6 +39,13 @@ final workerCategoriesProvider = FutureProvider<List<CategoryEntity>>((ref) asyn
   return result.fold((failure) => throw failure, (data) => data);
 });
 
+final materialCategoriesProvider = FutureProvider<List<CategoryEntity>>((ref) async {
+  final result = await GetCategories(ref.watch(homeRepositoryProvider))(
+    const GetCategoriesParams(type: CategoryType.material),
+  );
+  return result.fold((failure) => throw failure, (data) => data);
+});
+
 final popularWorkersProvider = FutureProvider<List<WorkerEntity>>((ref) async {
   final result = await GetPopularWorkers(ref.watch(homeRepositoryProvider))(const NoParams());
   return result.fold((failure) => throw failure, (data) => data);

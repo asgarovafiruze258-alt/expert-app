@@ -51,7 +51,7 @@ class HomeScreen extends ConsumerWidget {
         ),
         title: Text(
           l10n.appName,
-          style: const TextStyle(fontWeight: FontWeight.bold),
+          style: const TextStyle(fontWeight: FontWeight.bold, color: AppColors.primary),
         ),
         actions: const [LanguageSwitcher()],
         bottom: PreferredSize(
