@@ -155,6 +155,13 @@
   "openShopSubmitButton": "Submit",
   "openShopSuccess": "Your shop was submitted, awaiting admin approval",
   "openShopValidationError": "Enter a shop name",
+  "openShopPickOnMapButton": "Pick precisely on map",
+  "openShopLocationSelected": "Selected from map",
+
+  "shopLocationPickerTitle": "Pick address on map",
+  "shopLocationResolving": "Resolving address...",
+  "shopLocationUnresolved": "Drag the map to pick the exact point",
+  "shopLocationConfirmButton": "Use this address",
 
   "projectCreateTitle": "New project",
   "projectTitleLabel": "Project title",

@@ -850,6 +850,42 @@ abstract class AppLocalizations {
   /// **'Mağaza adını daxil edin'**
   String get openShopValidationError;
 
+  /// No description provided for @openShopPickOnMapButton.
+  ///
+  /// In az, this message translates to:
+  /// **'Xəritədən dəqiq seç'**
+  String get openShopPickOnMapButton;
+
+  /// No description provided for @openShopLocationSelected.
+  ///
+  /// In az, this message translates to:
+  /// **'Xəritədən seçildi'**
+  String get openShopLocationSelected;
+
+  /// No description provided for @shopLocationPickerTitle.
+  ///
+  /// In az, this message translates to:
+  /// **'Xəritədən ünvan seç'**
+  String get shopLocationPickerTitle;
+
+  /// No description provided for @shopLocationResolving.
+  ///
+  /// In az, this message translates to:
+  /// **'Ünvan müəyyən edilir...'**
+  String get shopLocationResolving;
+
+  /// No description provided for @shopLocationUnresolved.
+  ///
+  /// In az, this message translates to:
+  /// **'Xəritəni sürüşdürüb dəqiq nöqtəni seçin'**
+  String get shopLocationUnresolved;
+
+  /// No description provided for @shopLocationConfirmButton.
+  ///
+  /// In az, this message translates to:
+  /// **'Bu ünvanı seç'**
+  String get shopLocationConfirmButton;
+
   /// No description provided for @projectCreateTitle.
   ///
   /// In az, this message translates to:

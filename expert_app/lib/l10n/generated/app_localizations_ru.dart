@@ -399,6 +399,25 @@ class AppLocalizationsRu extends AppLocalizations {
   String get openShopValidationError => 'Введите название магазина';
 
   @override
+  String get openShopPickOnMapButton => 'Выбрать точно на карте';
+
+  @override
+  String get openShopLocationSelected => 'Выбрано на карте';
+
+  @override
+  String get shopLocationPickerTitle => 'Выбрать адрес на карте';
+
+  @override
+  String get shopLocationResolving => 'Определение адреса...';
+
+  @override
+  String get shopLocationUnresolved =>
+      'Передвиньте карту, чтобы выбрать точную точку';
+
+  @override
+  String get shopLocationConfirmButton => 'Использовать этот адрес';
+
+  @override
   String get projectCreateTitle => 'Новый проект';
 
   @override

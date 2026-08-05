@@ -14,6 +14,8 @@ sealed class ShopModel with _$ShopModel {
     String? logoUrl,
     String? address,
     String? rayon,
+    double? latitude,
+    double? longitude,
     required double rating,
     required bool isApproved,
   }) = _ShopModel;
@@ -25,6 +27,8 @@ sealed class ShopModel with _$ShopModel {
       logoUrl: json['logo_url'] as String?,
       address: json['address'] as String?,
       rayon: json['rayon'] as String?,
+      latitude: (json['latitude'] as num?)?.toDouble(),
+      longitude: (json['longitude'] as num?)?.toDouble(),
       rating: (json['rating'] as num?)?.toDouble() ?? 0,
       isApproved: json['is_approved'] as bool? ?? false,
     );
@@ -37,6 +41,8 @@ sealed class ShopModel with _$ShopModel {
       logoUrl: logoUrl,
       address: address,
       rayon: rayon,
+      latitude: latitude,
+      longitude: longitude,
       rating: rating,
       isApproved: isApproved,
     );

@@ -16,6 +16,8 @@ abstract class ShopRepository {
     required String name,
     String? address,
     String? rayon,
+    double? latitude,
+    double? longitude,
     required List<String> categoryIds,
   });
 }

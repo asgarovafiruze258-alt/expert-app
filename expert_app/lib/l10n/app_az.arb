@@ -156,6 +156,13 @@
   "openShopSubmitButton": "Göndər",
   "openShopSuccess": "Mağazanız göndərildi, admin təsdiqini gözləyir",
   "openShopValidationError": "Mağaza adını daxil edin",
+  "openShopPickOnMapButton": "Xəritədən dəqiq seç",
+  "openShopLocationSelected": "Xəritədən seçildi",
+
+  "shopLocationPickerTitle": "Xəritədən ünvan seç",
+  "shopLocationResolving": "Ünvan müəyyən edilir...",
+  "shopLocationUnresolved": "Xəritəni sürüşdürüb dəqiq nöqtəni seçin",
+  "shopLocationConfirmButton": "Bu ünvanı seç",
 
   "projectCreateTitle": "Yeni layihə",
   "projectTitleLabel": "Layihə adı",

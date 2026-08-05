@@ -9,6 +9,7 @@ import '../../../../core/widgets/loading_indicator.dart';
 import '../../../../l10n/generated/app_localizations.dart';
 import '../../../home/presentation/providers/home_providers.dart';
 import '../providers/shop_providers.dart';
+import 'shop_location_picker_screen.dart';
 
 class OpenShopScreen extends ConsumerStatefulWidget {
   const OpenShopScreen({super.key});
@@ -23,6 +24,20 @@ class _OpenShopScreenState extends ConsumerState<OpenShopScreen> {
   final _addressController = TextEditingController();
   final _rayonController = TextEditingController();
   final _selectedCategoryIds = <String>{};
+  double? _pickedLatitude;
+  double? _pickedLongitude;
+
+  Future<void> _pickOnMap() async {
+    final result = await Navigator.of(context).push<ShopLocationResult>(
+      MaterialPageRoute(builder: (context) => const ShopLocationPickerScreen()),
+    );
+    if (result == null || !mounted) return;
+    setState(() {
+      _addressController.text = result.address;
+      _pickedLatitude = result.latitude;
+      _pickedLongitude = result.longitude;
+    });
+  }
 
   @override
   void dispose() {
@@ -46,6 +61,8 @@ class _OpenShopScreenState extends ConsumerState<OpenShopScreen> {
           name: _nameController.text.trim(),
           address: _addressController.text.trim().isEmpty ? null : _addressController.text.trim(),
           rayon: _rayonController.text.trim().isEmpty ? null : _rayonController.text.trim(),
+          latitude: _pickedLatitude,
+          longitude: _pickedLongitude,
           categoryIds: _selectedCategoryIds.toList(),
         );
     if (!mounted) return;
@@ -92,6 +109,14 @@ class _OpenShopScreenState extends ConsumerState<OpenShopScreen> {
                 controller: _addressController,
                 label: l10n.openShopAddressLabel,
                 prefixIcon: Icons.location_on_outlined,
+              ),
+              const SizedBox(height: 8),
+              OutlinedButton.icon(
+                onPressed: _pickOnMap,
+                icon: const Icon(Icons.map_outlined),
+                label: Text(
+                  _pickedLatitude == null ? l10n.openShopPickOnMapButton : l10n.openShopLocationSelected,
+                ),
               ),
               const SizedBox(height: 12),
               AppTextField(

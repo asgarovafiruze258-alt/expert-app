@@ -14,7 +14,7 @@ T _$identity<T>(T value) => value;
 /// @nodoc
 mixin _$ShopEntity {
 
- String get id; String get name; String? get logoUrl; String? get address; String? get rayon; double get rating; bool get isApproved;
+ String get id; String get name; String? get logoUrl; String? get address; String? get rayon; double? get latitude; double? get longitude; double get rating; bool get isApproved;
 /// Create a copy of ShopEntity
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
@@ -25,16 +25,16 @@ $ShopEntityCopyWith<ShopEntity> get copyWith => _$ShopEntityCopyWithImpl<ShopEnt
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is ShopEntity&&(identical(other.id, id) || other.id == id)&&(identical(other.name, name) || other.name == name)&&(identical(other.logoUrl, logoUrl) || other.logoUrl == logoUrl)&&(identical(other.address, address) || other.address == address)&&(identical(other.rayon, rayon) || other.rayon == rayon)&&(identical(other.rating, rating) || other.rating == rating)&&(identical(other.isApproved, isApproved) || other.isApproved == isApproved));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is ShopEntity&&(identical(other.id, id) || other.id == id)&&(identical(other.name, name) || other.name == name)&&(identical(other.logoUrl, logoUrl) || other.logoUrl == logoUrl)&&(identical(other.address, address) || other.address == address)&&(identical(other.rayon, rayon) || other.rayon == rayon)&&(identical(other.latitude, latitude) || other.latitude == latitude)&&(identical(other.longitude, longitude) || other.longitude == longitude)&&(identical(other.rating, rating) || other.rating == rating)&&(identical(other.isApproved, isApproved) || other.isApproved == isApproved));
 }
 
 
 @override
-int get hashCode => Object.hash(runtimeType,id,name,logoUrl,address,rayon,rating,isApproved);
+int get hashCode => Object.hash(runtimeType,id,name,logoUrl,address,rayon,latitude,longitude,rating,isApproved);
 
 @override
 String toString() {
-  return 'ShopEntity(id: $id, name: $name, logoUrl: $logoUrl, address: $address, rayon: $rayon, rating: $rating, isApproved: $isApproved)';
+  return 'ShopEntity(id: $id, name: $name, logoUrl: $logoUrl, address: $address, rayon: $rayon, latitude: $latitude, longitude: $longitude, rating: $rating, isApproved: $isApproved)';
 }
 
 
@@ -45,7 +45,7 @@ abstract mixin class $ShopEntityCopyWith<$Res>  {
   factory $ShopEntityCopyWith(ShopEntity value, $Res Function(ShopEntity) _then) = _$ShopEntityCopyWithImpl;
 @useResult
 $Res call({
- String id, String name, String? logoUrl, String? address, String? rayon, double rating, bool isApproved
+ String id, String name, String? logoUrl, String? address, String? rayon, double? latitude, double? longitude, double rating, bool isApproved
 });
 
 
@@ -62,14 +62,16 @@ class _$ShopEntityCopyWithImpl<$Res>
 
 /// Create a copy of ShopEntity
 /// with the given fields replaced by the non-null parameter values.
-@pragma('vm:prefer-inline') @override $Res call({Object? id = null,Object? name = null,Object? logoUrl = freezed,Object? address = freezed,Object? rayon = freezed,Object? rating = null,Object? isApproved = null,}) {
+@pragma('vm:prefer-inline') @override $Res call({Object? id = null,Object? name = null,Object? logoUrl = freezed,Object? address = freezed,Object? rayon = freezed,Object? latitude = freezed,Object? longitude = freezed,Object? rating = null,Object? isApproved = null,}) {
   return _then(_self.copyWith(
 id: null == id ? _self.id : id // ignore: cast_nullable_to_non_nullable
 as String,name: null == name ? _self.name : name // ignore: cast_nullable_to_non_nullable
 as String,logoUrl: freezed == logoUrl ? _self.logoUrl : logoUrl // ignore: cast_nullable_to_non_nullable
 as String?,address: freezed == address ? _self.address : address // ignore: cast_nullable_to_non_nullable
 as String?,rayon: freezed == rayon ? _self.rayon : rayon // ignore: cast_nullable_to_non_nullable
-as String?,rating: null == rating ? _self.rating : rating // ignore: cast_nullable_to_non_nullable
+as String?,latitude: freezed == latitude ? _self.latitude : latitude // ignore: cast_nullable_to_non_nullable
+as double?,longitude: freezed == longitude ? _self.longitude : longitude // ignore: cast_nullable_to_non_nullable
+as double?,rating: null == rating ? _self.rating : rating // ignore: cast_nullable_to_non_nullable
 as double,isApproved: null == isApproved ? _self.isApproved : isApproved // ignore: cast_nullable_to_non_nullable
 as bool,
   ));
@@ -153,10 +155,10 @@ return $default(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( String id,  String name,  String? logoUrl,  String? address,  String? rayon,  double rating,  bool isApproved)?  $default,{required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( String id,  String name,  String? logoUrl,  String? address,  String? rayon,  double? latitude,  double? longitude,  double rating,  bool isApproved)?  $default,{required TResult orElse(),}) {final _that = this;
 switch (_that) {
 case _ShopEntity() when $default != null:
-return $default(_that.id,_that.name,_that.logoUrl,_that.address,_that.rayon,_that.rating,_that.isApproved);case _:
+return $default(_that.id,_that.name,_that.logoUrl,_that.address,_that.rayon,_that.latitude,_that.longitude,_that.rating,_that.isApproved);case _:
   return orElse();
 
 }
@@ -174,10 +176,10 @@ return $default(_that.id,_that.name,_that.logoUrl,_that.address,_that.rayon,_tha
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( String id,  String name,  String? logoUrl,  String? address,  String? rayon,  double rating,  bool isApproved)  $default,) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( String id,  String name,  String? logoUrl,  String? address,  String? rayon,  double? latitude,  double? longitude,  double rating,  bool isApproved)  $default,) {final _that = this;
 switch (_that) {
 case _ShopEntity():
-return $default(_that.id,_that.name,_that.logoUrl,_that.address,_that.rayon,_that.rating,_that.isApproved);}
+return $default(_that.id,_that.name,_that.logoUrl,_that.address,_that.rayon,_that.latitude,_that.longitude,_that.rating,_that.isApproved);}
 }
 /// A variant of `when` that fallback to returning `null`
 ///
@@ -191,10 +193,10 @@ return $default(_that.id,_that.name,_that.logoUrl,_that.address,_that.rayon,_tha
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( String id,  String name,  String? logoUrl,  String? address,  String? rayon,  double rating,  bool isApproved)?  $default,) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( String id,  String name,  String? logoUrl,  String? address,  String? rayon,  double? latitude,  double? longitude,  double rating,  bool isApproved)?  $default,) {final _that = this;
 switch (_that) {
 case _ShopEntity() when $default != null:
-return $default(_that.id,_that.name,_that.logoUrl,_that.address,_that.rayon,_that.rating,_that.isApproved);case _:
+return $default(_that.id,_that.name,_that.logoUrl,_that.address,_that.rayon,_that.latitude,_that.longitude,_that.rating,_that.isApproved);case _:
   return null;
 
 }
@@ -206,7 +208,7 @@ return $default(_that.id,_that.name,_that.logoUrl,_that.address,_that.rayon,_tha
 
 
 class _ShopEntity implements ShopEntity {
-  const _ShopEntity({required this.id, required this.name, this.logoUrl, this.address, this.rayon, this.rating = 0, this.isApproved = false});
+  const _ShopEntity({required this.id, required this.name, this.logoUrl, this.address, this.rayon, this.latitude, this.longitude, this.rating = 0, this.isApproved = false});
   
 
 @override final  String id;
@@ -214,6 +216,8 @@ class _ShopEntity implements ShopEntity {
 @override final  String? logoUrl;
 @override final  String? address;
 @override final  String? rayon;
+@override final  double? latitude;
+@override final  double? longitude;
 @override@JsonKey() final  double rating;
 @override@JsonKey() final  bool isApproved;
 
@@ -227,16 +231,16 @@ _$ShopEntityCopyWith<_ShopEntity> get copyWith => __$ShopEntityCopyWithImpl<_Sho
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is _ShopEntity&&(identical(other.id, id) || other.id == id)&&(identical(other.name, name) || other.name == name)&&(identical(other.logoUrl, logoUrl) || other.logoUrl == logoUrl)&&(identical(other.address, address) || other.address == address)&&(identical(other.rayon, rayon) || other.rayon == rayon)&&(identical(other.rating, rating) || other.rating == rating)&&(identical(other.isApproved, isApproved) || other.isApproved == isApproved));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _ShopEntity&&(identical(other.id, id) || other.id == id)&&(identical(other.name, name) || other.name == name)&&(identical(other.logoUrl, logoUrl) || other.logoUrl == logoUrl)&&(identical(other.address, address) || other.address == address)&&(identical(other.rayon, rayon) || other.rayon == rayon)&&(identical(other.latitude, latitude) || other.latitude == latitude)&&(identical(other.longitude, longitude) || other.longitude == longitude)&&(identical(other.rating, rating) || other.rating == rating)&&(identical(other.isApproved, isApproved) || other.isApproved == isApproved));
 }
 
 
 @override
-int get hashCode => Object.hash(runtimeType,id,name,logoUrl,address,rayon,rating,isApproved);
+int get hashCode => Object.hash(runtimeType,id,name,logoUrl,address,rayon,latitude,longitude,rating,isApproved);
 
 @override
 String toString() {
-  return 'ShopEntity(id: $id, name: $name, logoUrl: $logoUrl, address: $address, rayon: $rayon, rating: $rating, isApproved: $isApproved)';
+  return 'ShopEntity(id: $id, name: $name, logoUrl: $logoUrl, address: $address, rayon: $rayon, latitude: $latitude, longitude: $longitude, rating: $rating, isApproved: $isApproved)';
 }
 
 
@@ -247,7 +251,7 @@ abstract mixin class _$ShopEntityCopyWith<$Res> implements $ShopEntityCopyWith<$
   factory _$ShopEntityCopyWith(_ShopEntity value, $Res Function(_ShopEntity) _then) = __$ShopEntityCopyWithImpl;
 @override @useResult
 $Res call({
- String id, String name, String? logoUrl, String? address, String? rayon, double rating, bool isApproved
+ String id, String name, String? logoUrl, String? address, String? rayon, double? latitude, double? longitude, double rating, bool isApproved
 });
 
 
@@ -264,14 +268,16 @@ class __$ShopEntityCopyWithImpl<$Res>
 
 /// Create a copy of ShopEntity
 /// with the given fields replaced by the non-null parameter values.
-@override @pragma('vm:prefer-inline') $Res call({Object? id = null,Object? name = null,Object? logoUrl = freezed,Object? address = freezed,Object? rayon = freezed,Object? rating = null,Object? isApproved = null,}) {
+@override @pragma('vm:prefer-inline') $Res call({Object? id = null,Object? name = null,Object? logoUrl = freezed,Object? address = freezed,Object? rayon = freezed,Object? latitude = freezed,Object? longitude = freezed,Object? rating = null,Object? isApproved = null,}) {
   return _then(_ShopEntity(
 id: null == id ? _self.id : id // ignore: cast_nullable_to_non_nullable
 as String,name: null == name ? _self.name : name // ignore: cast_nullable_to_non_nullable
 as String,logoUrl: freezed == logoUrl ? _self.logoUrl : logoUrl // ignore: cast_nullable_to_non_nullable
 as String?,address: freezed == address ? _self.address : address // ignore: cast_nullable_to_non_nullable
 as String?,rayon: freezed == rayon ? _self.rayon : rayon // ignore: cast_nullable_to_non_nullable
-as String?,rating: null == rating ? _self.rating : rating // ignore: cast_nullable_to_non_nullable
+as String?,latitude: freezed == latitude ? _self.latitude : latitude // ignore: cast_nullable_to_non_nullable
+as double?,longitude: freezed == longitude ? _self.longitude : longitude // ignore: cast_nullable_to_non_nullable
+as double?,rating: null == rating ? _self.rating : rating // ignore: cast_nullable_to_non_nullable
 as double,isApproved: null == isApproved ? _self.isApproved : isApproved // ignore: cast_nullable_to_non_nullable
 as bool,
   ));

@@ -398,6 +398,24 @@ class AppLocalizationsEn extends AppLocalizations {
   String get openShopValidationError => 'Enter a shop name';
 
   @override
+  String get openShopPickOnMapButton => 'Pick precisely on map';
+
+  @override
+  String get openShopLocationSelected => 'Selected from map';
+
+  @override
+  String get shopLocationPickerTitle => 'Pick address on map';
+
+  @override
+  String get shopLocationResolving => 'Resolving address...';
+
+  @override
+  String get shopLocationUnresolved => 'Drag the map to pick the exact point';
+
+  @override
+  String get shopLocationConfirmButton => 'Use this address';
+
+  @override
   String get projectCreateTitle => 'New project';
 
   @override

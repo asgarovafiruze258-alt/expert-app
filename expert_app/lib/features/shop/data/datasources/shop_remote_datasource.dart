@@ -12,6 +12,8 @@ abstract class ShopRemoteDataSource {
     required String name,
     String? address,
     String? rayon,
+    double? latitude,
+    double? longitude,
     required List<String> categoryIds,
   });
 }
@@ -64,6 +66,8 @@ class ShopRemoteDataSourceImpl implements ShopRemoteDataSource {
     required String name,
     String? address,
     String? rayon,
+    double? latitude,
+    double? longitude,
     required List<String> categoryIds,
   }) async {
     final userId = client.auth.currentUser?.id;
@@ -76,6 +80,8 @@ class ShopRemoteDataSourceImpl implements ShopRemoteDataSource {
             'name': name,
             'address': address,
             'rayon': rayon,
+            'latitude': latitude,
+            'longitude': longitude,
           })
           .select()
           .single();

@@ -28,6 +28,8 @@
 	<true/>
 	<key>NSPhotoLibraryUsageDescription</key>
 	<string>Profil şəklinizi seçmək üçün fotolarınıza giriş lazımdır.</string>
+	<key>NSLocationWhenInUseUsageDescription</key>
+	<string>Xəritədə cari yerinizi göstərmək üçün məkan icazəsi lazımdır.</string>
 	<key>UIApplicationSceneManifest</key>
 	<dict>
 		<key>UIApplicationSupportsMultipleScenes</key>

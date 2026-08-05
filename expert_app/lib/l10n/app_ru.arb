@@ -155,6 +155,13 @@
   "openShopSubmitButton": "Отправить",
   "openShopSuccess": "Магазин отправлен, ожидайте подтверждения администратора",
   "openShopValidationError": "Введите название магазина",
+  "openShopPickOnMapButton": "Выбрать точно на карте",
+  "openShopLocationSelected": "Выбрано на карте",
+
+  "shopLocationPickerTitle": "Выбрать адрес на карте",
+  "shopLocationResolving": "Определение адреса...",
+  "shopLocationUnresolved": "Передвиньте карту, чтобы выбрать точную точку",
+  "shopLocationConfirmButton": "Использовать этот адрес",
 
   "projectCreateTitle": "Новый проект",
   "projectTitleLabel": "Название проекта",

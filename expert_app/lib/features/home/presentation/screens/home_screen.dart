@@ -3,6 +3,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 
 import '../../../../core/errors/failure.dart';
+import '../../../../core/theme/app_colors.dart';
 import '../../../../core/theme/theme_provider.dart';
 import '../../../../core/widgets/empty_state_view.dart';
 import '../../../../core/widgets/error_view.dart';
@@ -38,8 +39,9 @@ class HomeScreen extends ConsumerWidget {
 
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Theme.of(context).colorScheme.secondary,
-        foregroundColor: Colors.white,
+        backgroundColor: isDark ? AppColors.darkSurface : AppColors.homeAppBarLight,
+        foregroundColor: isDark ? Colors.white : AppColors.secondary,
+        elevation: 1,
         centerTitle: true,
         leading: IconButton(
           icon: Icon(isDark ? Icons.dark_mode : Icons.light_mode_outlined),

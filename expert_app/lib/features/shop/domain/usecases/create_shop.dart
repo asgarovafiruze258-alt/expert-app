@@ -9,12 +9,16 @@ class CreateShopParams {
   final String name;
   final String? address;
   final String? rayon;
+  final double? latitude;
+  final double? longitude;
   final List<String> categoryIds;
 
   const CreateShopParams({
     required this.name,
     this.address,
     this.rayon,
+    this.latitude,
+    this.longitude,
     required this.categoryIds,
   });
 }
@@ -30,6 +34,8 @@ class CreateShop implements UseCase<ShopEntity, CreateShopParams> {
       name: params.name,
       address: params.address,
       rayon: params.rayon,
+      latitude: params.latitude,
+      longitude: params.longitude,
       categoryIds: params.categoryIds,
     );
   }

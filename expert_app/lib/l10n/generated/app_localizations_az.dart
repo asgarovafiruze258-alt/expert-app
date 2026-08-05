@@ -398,6 +398,25 @@ class AppLocalizationsAz extends AppLocalizations {
   String get openShopValidationError => 'Mağaza adını daxil edin';
 
   @override
+  String get openShopPickOnMapButton => 'Xəritədən dəqiq seç';
+
+  @override
+  String get openShopLocationSelected => 'Xəritədən seçildi';
+
+  @override
+  String get shopLocationPickerTitle => 'Xəritədən ünvan seç';
+
+  @override
+  String get shopLocationResolving => 'Ünvan müəyyən edilir...';
+
+  @override
+  String get shopLocationUnresolved =>
+      'Xəritəni sürüşdürüb dəqiq nöqtəni seçin';
+
+  @override
+  String get shopLocationConfirmButton => 'Bu ünvanı seç';
+
+  @override
   String get projectCreateTitle => 'Yeni layihə';
 
   @override
