@@ -36,18 +36,29 @@ class AuthRemoteDataSourceImpl implements AuthRemoteDataSource {
 
   const AuthRemoteDataSourceImpl(this.client);
 
-  Future<UserModel> _fetchProfile(String userId) async {
-    final json = await client.from('profiles').select().eq('id', userId).single();
-    return UserModel.fromJson(json);
+  /// `phone` sütunu `profiles`-dan birbaşa oxuna bilmir (bax
+  /// SUPABASE_MIGRATION_17.sql — başqalarının nömrəsini API ilə çəkməyin
+  /// qarşısını almaq üçün), ona görə ayrıca `get_my_phone()` RPC-si ilə
+  /// yalnız cari istifadəçinin öz nömrəsi əlavə olunur. `email` isə heç vaxt
+  /// `profiles`-da saxlanmır — auth sessiyasından götürülür.
+  Future<UserModel> _fetchProfile(String userId, {User? authUser}) async {
+    final json = await client
+        .from('profiles')
+        .select('id, full_name, avatar_url, role, preferred_language, is_verified')
+        .eq('id', userId)
+        .single();
+    final phone = await client.rpc('get_my_phone') as String?;
+    final resolvedAuthUser = authUser ?? client.auth.currentUser;
+    return UserModel.fromJson(json).copyWith(phone: phone, email: resolvedAuthUser?.email);
   }
 
   /// `handle_new_user` trigger-i `auth.users` insert-i ilə eyni anda işə düşür,
   /// amma PostgREST-in yeni sətri görməsi arasında qısa gecikmə ola bilər —
   /// ona görə qeydiyyat/OTP-dən dərhal sonrakı ilk oxuma bir neçə dəfə təkrarlanır.
-  Future<UserModel> _fetchProfileWithRetry(String userId, {int attempts = 4}) async {
+  Future<UserModel> _fetchProfileWithRetry(String userId, {User? authUser, int attempts = 4}) async {
     for (var i = 0; i < attempts; i++) {
       try {
-        return await _fetchProfile(userId);
+        return await _fetchProfile(userId, authUser: authUser);
       } catch (_) {
         if (i == attempts - 1) rethrow;
         await Future.delayed(Duration(milliseconds: 300 * (i + 1)));
@@ -70,7 +81,7 @@ class AuthRemoteDataSourceImpl implements AuthRemoteDataSource {
       );
       final user = response.user;
       if (user == null) throw const ServerException('Qeydiyyat uğursuz oldu');
-      return _fetchProfileWithRetry(user.id);
+      return _fetchProfileWithRetry(user.id, authUser: user);
     } on AuthException catch (e) {
       throw ServerException(e.message);
     }
@@ -82,7 +93,7 @@ class AuthRemoteDataSourceImpl implements AuthRemoteDataSource {
       final response = await client.auth.signInWithPassword(email: email, password: password);
       final user = response.user;
       if (user == null) throw const ServerException('Giriş uğursuz oldu');
-      return _fetchProfile(user.id);
+      return _fetchProfile(user.id, authUser: user);
     } on AuthException catch (e) {
       throw ServerException(e.message);
     }
@@ -116,7 +127,7 @@ class AuthRemoteDataSourceImpl implements AuthRemoteDataSource {
       );
       final user = response.user;
       if (user == null) throw const ServerException('OTP təsdiqlənmədi');
-      return _fetchProfileWithRetry(user.id);
+      return _fetchProfileWithRetry(user.id, authUser: user);
     } on AuthException catch (e) {
       throw ServerException(e.message);
     }
@@ -143,13 +154,8 @@ class AuthRemoteDataSourceImpl implements AuthRemoteDataSource {
     final userId = client.auth.currentUser?.id;
     if (userId == null) throw const UnauthorizedException();
     try {
-      final row = await client
-          .from('profiles')
-          .update({'full_name': fullName})
-          .eq('id', userId)
-          .select()
-          .single();
-      return UserModel.fromJson(row);
+      await client.from('profiles').update({'full_name': fullName}).eq('id', userId);
+      return _fetchProfile(userId);
     } on PostgrestException catch (e) {
       throw ServerException(e.message);
     }
@@ -169,13 +175,8 @@ class AuthRemoteDataSourceImpl implements AuthRemoteDataSource {
       // Eyni path yenidən yükləndikdə URL dəyişmədiyi üçün keşi sındırmaq lazımdır.
       final publicUrl =
           '${client.storage.from('avatars').getPublicUrl(path)}?v=${DateTime.now().millisecondsSinceEpoch}';
-      final row = await client
-          .from('profiles')
-          .update({'avatar_url': publicUrl})
-          .eq('id', userId)
-          .select()
-          .single();
-      return UserModel.fromJson(row);
+      await client.from('profiles').update({'avatar_url': publicUrl}).eq('id', userId);
+      return _fetchProfile(userId);
     } on StorageException catch (e) {
       throw ServerException(e.message);
     } on PostgrestException catch (e) {
@@ -188,7 +189,7 @@ class AuthRemoteDataSourceImpl implements AuthRemoteDataSource {
     return client.auth.onAuthStateChange.asyncMap((authState) async {
       final user = authState.session?.user;
       if (user == null) return null;
-      return _fetchProfile(user.id);
+      return _fetchProfile(user.id, authUser: user);
     });
   }
 }

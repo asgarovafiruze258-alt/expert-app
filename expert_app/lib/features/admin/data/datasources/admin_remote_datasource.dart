@@ -49,7 +49,7 @@ class AdminRemoteDataSourceImpl implements AdminRemoteDataSource {
   Future<AdminStatsEntity> getStats() async {
     try {
       final results = await Future.wait([
-        client.from('profiles').select().count(CountOption.exact),
+        client.from('profiles').select('id').count(CountOption.exact),
         client.from('workers').select().count(CountOption.exact),
         client.from('workers').select().eq('is_approved', false).count(CountOption.exact),
         client.from('shops').select().count(CountOption.exact),
@@ -199,7 +199,10 @@ class AdminRemoteDataSourceImpl implements AdminRemoteDataSource {
   @override
   Future<List<UserModel>> getUsers() async {
     try {
-      final rows = await client.from('profiles').select().order('created_at', ascending: false);
+      // `phone` sütunu adi cədvəl sorğusu ilə oxuna bilmir (bax
+      // SUPABASE_MIGRATION_17.sql) — admin üçün nəzərdə tutulan, admin
+      // olduğunu yoxlayan SECURITY DEFINER RPC-dən istifadə olunur.
+      final rows = await client.rpc('admin_list_profiles');
       return (rows as List)
           .map((row) => UserModel.fromJson(row as Map<String, dynamic>))
           .toList();
