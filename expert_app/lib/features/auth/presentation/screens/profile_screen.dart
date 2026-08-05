@@ -24,11 +24,15 @@ class ProfileScreen extends ConsumerStatefulWidget {
 class _ProfileScreenState extends ConsumerState<ProfileScreen> {
   bool _isLoggingOut = false;
 
-  void _openEditSheet(String currentFullName) {
+  void _openEditSheet(UserEntity user) {
     showModalBottomSheet(
       context: context,
       isScrollControlled: true,
-      builder: (context) => EditProfileSheet(initialFullName: currentFullName),
+      builder: (context) => EditProfileSheet(
+        initialFullName: user.fullName,
+        initialPhone: user.phone,
+        initialDateOfBirth: user.dateOfBirth,
+      ),
     );
   }
 
@@ -159,7 +163,7 @@ class _ProfileScreenState extends ConsumerState<ProfileScreen> {
                     Text(user.phone!, textAlign: TextAlign.center),
                   const SizedBox(height: 8),
                   TextButton.icon(
-                    onPressed: () => _openEditSheet(user.fullName),
+                    onPressed: () => _openEditSheet(user),
                     icon: const Icon(Icons.edit_outlined, size: 18),
                     label: Text(l10n.profileEditButton),
                   ),

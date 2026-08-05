@@ -39,9 +39,9 @@ class HomeScreen extends ConsumerWidget {
 
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: isDark ? AppColors.darkSurface : AppColors.homeAppBarLight,
+        backgroundColor: isDark ? AppColors.darkBackground : AppColors.lightBackground,
         foregroundColor: isDark ? Colors.white : AppColors.secondary,
-        elevation: 1,
+        elevation: 0,
         centerTitle: true,
         leading: IconButton(
           icon: Icon(isDark ? Icons.dark_mode : Icons.light_mode_outlined),
@@ -50,9 +50,21 @@ class HomeScreen extends ConsumerWidget {
               .read(themeModeProvider.notifier)
               .setThemeMode(isDark ? ThemeMode.light : ThemeMode.dark),
         ),
-        title: Text(
-          l10n.appName,
-          style: const TextStyle(fontWeight: FontWeight.bold, letterSpacing: 0.3),
+        title: Text.rich(
+          TextSpan(
+            style: TextStyle(
+              fontWeight: FontWeight.bold,
+              letterSpacing: 0.3,
+              color: isDark ? Colors.white : AppColors.secondary,
+            ),
+            children: [
+              const TextSpan(text: 'Exper'),
+              TextSpan(
+                text: 'Tikinti',
+                style: TextStyle(color: isDark ? AppColors.primaryDark : AppColors.primary),
+              ),
+            ],
+          ),
         ),
         actions: const [LanguageSwitcher()],
         bottom: PreferredSize(

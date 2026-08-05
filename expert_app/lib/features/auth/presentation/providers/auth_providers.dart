@@ -29,9 +29,17 @@ class EditProfileController extends AsyncNotifier<void> {
   @override
   FutureOr<void> build() {}
 
-  Future<bool> updateFullName(String fullName) async {
+  Future<bool> updateProfile({
+    required String fullName,
+    String? phone,
+    DateTime? dateOfBirth,
+  }) async {
     state = const AsyncLoading();
-    final result = await ref.read(authRepositoryProvider).updateProfile(fullName: fullName);
+    final result = await ref.read(authRepositoryProvider).updateProfile(
+          fullName: fullName,
+          phone: phone,
+          dateOfBirth: dateOfBirth,
+        );
     return result.fold(
       (failure) {
         state = AsyncError(failure, StackTrace.current);

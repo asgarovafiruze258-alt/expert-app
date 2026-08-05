@@ -394,6 +394,18 @@ abstract class AppLocalizations {
   /// **'Ad, Soyad'**
   String get editProfileNameLabel;
 
+  /// No description provided for @editProfilePhoneLabel.
+  ///
+  /// In az, this message translates to:
+  /// **'Əlaqə nömrəsi'**
+  String get editProfilePhoneLabel;
+
+  /// No description provided for @editProfileDateOfBirthLabel.
+  ///
+  /// In az, this message translates to:
+  /// **'Doğum tarixi'**
+  String get editProfileDateOfBirthLabel;
+
   /// No description provided for @editProfileSaveButton.
   ///
   /// In az, this message translates to:
@@ -825,6 +837,12 @@ abstract class AppLocalizations {
   /// In az, this message translates to:
   /// **'Rayon'**
   String get openShopRayonLabel;
+
+  /// No description provided for @openShopPhoneLabel.
+  ///
+  /// In az, this message translates to:
+  /// **'Əlaqə nömrəsi'**
+  String get openShopPhoneLabel;
 
   /// No description provided for @openShopCategoriesLabel.
   ///
@@ -1293,6 +1311,12 @@ abstract class AppLocalizations {
   /// In az, this message translates to:
   /// **'Admin'**
   String get adminRoleAdmin;
+
+  /// No description provided for @adminUserAge.
+  ///
+  /// In az, this message translates to:
+  /// **'{age} yaş'**
+  String adminUserAge(int age);
 
   /// No description provided for @aiAssistantTitle.
   ///

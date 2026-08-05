@@ -161,6 +161,12 @@ class AppLocalizationsEn extends AppLocalizations {
   String get editProfileNameLabel => 'Full name';
 
   @override
+  String get editProfilePhoneLabel => 'Contact phone';
+
+  @override
+  String get editProfileDateOfBirthLabel => 'Date of birth';
+
+  @override
   String get editProfileSaveButton => 'Save';
 
   @override
@@ -383,6 +389,9 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get openShopRayonLabel => 'District';
+
+  @override
+  String get openShopPhoneLabel => 'Contact phone';
 
   @override
   String get openShopCategoriesLabel => 'Material categories you sell';
@@ -620,6 +629,11 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get adminRoleAdmin => 'Admin';
+
+  @override
+  String adminUserAge(int age) {
+    return '$age y/o';
+  }
 
   @override
   String get aiAssistantTitle => 'AI Assistant';

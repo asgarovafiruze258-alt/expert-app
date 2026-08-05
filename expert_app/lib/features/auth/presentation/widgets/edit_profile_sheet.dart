@@ -9,8 +9,15 @@ import '../providers/auth_providers.dart';
 
 class EditProfileSheet extends ConsumerStatefulWidget {
   final String initialFullName;
+  final String? initialPhone;
+  final DateTime? initialDateOfBirth;
 
-  const EditProfileSheet({super.key, required this.initialFullName});
+  const EditProfileSheet({
+    super.key,
+    required this.initialFullName,
+    this.initialPhone,
+    this.initialDateOfBirth,
+  });
 
   @override
   ConsumerState<EditProfileSheet> createState() => _EditProfileSheetState();
@@ -18,11 +25,45 @@ class EditProfileSheet extends ConsumerStatefulWidget {
 
 class _EditProfileSheetState extends ConsumerState<EditProfileSheet> {
   late final _nameController = TextEditingController(text: widget.initialFullName);
+  late final _phoneController = TextEditingController(text: widget.initialPhone ?? '');
+  late final _dobController = TextEditingController(text: _formatDate(widget.initialDateOfBirth));
+  DateTime? _dateOfBirth;
+
+  @override
+  void initState() {
+    super.initState();
+    _dateOfBirth = widget.initialDateOfBirth;
+  }
 
   @override
   void dispose() {
     _nameController.dispose();
+    _phoneController.dispose();
+    _dobController.dispose();
     super.dispose();
+  }
+
+  static String _formatDate(DateTime? date) {
+    if (date == null) return '';
+    return '${date.day.toString().padLeft(2, '0')}.'
+        '${date.month.toString().padLeft(2, '0')}.'
+        '${date.year}';
+  }
+
+  Future<void> _pickDateOfBirth() async {
+    final now = DateTime.now();
+    final picked = await showDatePicker(
+      context: context,
+      initialDate: _dateOfBirth ?? DateTime(now.year - 25),
+      firstDate: DateTime(now.year - 120),
+      lastDate: now,
+    );
+    if (picked != null) {
+      setState(() {
+        _dateOfBirth = picked;
+        _dobController.text = _formatDate(picked);
+      });
+    }
   }
 
   Future<void> _submit() async {
@@ -35,7 +76,11 @@ class _EditProfileSheetState extends ConsumerState<EditProfileSheet> {
       return;
     }
 
-    final success = await ref.read(editProfileControllerProvider.notifier).updateFullName(fullName);
+    final success = await ref.read(editProfileControllerProvider.notifier).updateProfile(
+          fullName: fullName,
+          phone: _phoneController.text.trim().isEmpty ? null : _phoneController.text.trim(),
+          dateOfBirth: _dateOfBirth,
+        );
     if (!mounted) return;
     if (success) {
       Navigator.of(context).pop();
@@ -72,6 +117,21 @@ class _EditProfileSheetState extends ConsumerState<EditProfileSheet> {
             controller: _nameController,
             label: l10n.editProfileNameLabel,
             prefixIcon: Icons.person_outline,
+          ),
+          const SizedBox(height: 12),
+          AppTextField(
+            controller: _phoneController,
+            label: l10n.editProfilePhoneLabel,
+            keyboardType: TextInputType.phone,
+            prefixIcon: Icons.phone_outlined,
+          ),
+          const SizedBox(height: 12),
+          AppTextField(
+            controller: _dobController,
+            label: l10n.editProfileDateOfBirthLabel,
+            prefixIcon: Icons.cake_outlined,
+            readOnly: true,
+            onTap: _pickDateOfBirth,
           ),
           const SizedBox(height: 20),
           AppButton(

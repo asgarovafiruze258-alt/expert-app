@@ -9,6 +9,8 @@ class AppTextField extends StatelessWidget {
   final String? Function(String?)? validator;
   final IconData? prefixIcon;
   final int maxLines;
+  final bool readOnly;
+  final VoidCallback? onTap;
 
   const AppTextField({
     super.key,
@@ -20,6 +22,8 @@ class AppTextField extends StatelessWidget {
     this.validator,
     this.prefixIcon,
     this.maxLines = 1,
+    this.readOnly = false,
+    this.onTap,
   });
 
   @override
@@ -30,6 +34,8 @@ class AppTextField extends StatelessWidget {
       keyboardType: keyboardType,
       validator: validator,
       maxLines: maxLines,
+      readOnly: readOnly,
+      onTap: onTap,
       decoration: InputDecoration(
         labelText: label,
         hintText: hint,

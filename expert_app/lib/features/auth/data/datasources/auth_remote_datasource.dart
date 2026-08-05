@@ -24,7 +24,11 @@ abstract class AuthRemoteDataSource {
 
   Future<UserModel?> getCurrentUser();
 
-  Future<UserModel> updateProfile({required String fullName});
+  Future<UserModel> updateProfile({
+    required String fullName,
+    String? phone,
+    DateTime? dateOfBirth,
+  });
 
   Future<UserModel> updateAvatar({required Uint8List bytes, required String fileExt});
 
@@ -36,20 +40,28 @@ class AuthRemoteDataSourceImpl implements AuthRemoteDataSource {
 
   const AuthRemoteDataSourceImpl(this.client);
 
-  /// `phone` sütunu `profiles`-dan birbaşa oxuna bilmir (bax
-  /// SUPABASE_MIGRATION_17.sql — başqalarının nömrəsini API ilə çəkməyin
-  /// qarşısını almaq üçün), ona görə ayrıca `get_my_phone()` RPC-si ilə
-  /// yalnız cari istifadəçinin öz nömrəsi əlavə olunur. `email` isə heç vaxt
-  /// `profiles`-da saxlanmır — auth sessiyasından götürülür.
+  /// `phone`/`date_of_birth` sütunları `profiles`-dan birbaşa oxuna bilmir
+  /// (bax SUPABASE_MIGRATION_17.sql və 19.sql — başqalarının bu
+  /// məlumatlarını API ilə çəkməyin qarşısını almaq üçün), ona görə ayrıca
+  /// `get_my_private_fields()` RPC-si ilə yalnız cari istifadəçinin öz
+  /// dəyərləri əlavə olunur. `email` isə heç vaxt `profiles`-da saxlanmır —
+  /// auth sessiyasından götürülür.
   Future<UserModel> _fetchProfile(String userId, {User? authUser}) async {
     final json = await client
         .from('profiles')
         .select('id, full_name, avatar_url, role, preferred_language, is_verified')
         .eq('id', userId)
         .single();
-    final phone = await client.rpc('get_my_phone') as String?;
+    final privateFieldsRows = await client.rpc('get_my_private_fields') as List;
+    final privateFields =
+        privateFieldsRows.isNotEmpty ? privateFieldsRows.first as Map<String, dynamic> : null;
+    final dobString = privateFields?['date_of_birth'] as String?;
     final resolvedAuthUser = authUser ?? client.auth.currentUser;
-    return UserModel.fromJson(json).copyWith(phone: phone, email: resolvedAuthUser?.email);
+    return UserModel.fromJson(json).copyWith(
+      phone: privateFields?['phone'] as String?,
+      dateOfBirth: dobString != null ? DateTime.parse(dobString) : null,
+      email: resolvedAuthUser?.email,
+    );
   }
 
   /// `handle_new_user` trigger-i `auth.users` insert-i ilə eyni anda işə düşür,
@@ -150,13 +162,26 @@ class AuthRemoteDataSourceImpl implements AuthRemoteDataSource {
   }
 
   @override
-  Future<UserModel> updateProfile({required String fullName}) async {
+  Future<UserModel> updateProfile({
+    required String fullName,
+    String? phone,
+    DateTime? dateOfBirth,
+  }) async {
     final userId = client.auth.currentUser?.id;
     if (userId == null) throw const UnauthorizedException();
     try {
-      await client.from('profiles').update({'full_name': fullName}).eq('id', userId);
+      await client.from('profiles').update({
+        'full_name': fullName,
+        'phone': phone,
+        'date_of_birth': dateOfBirth == null
+            ? null
+            : '${dateOfBirth.year.toString().padLeft(4, '0')}-'
+                '${dateOfBirth.month.toString().padLeft(2, '0')}-'
+                '${dateOfBirth.day.toString().padLeft(2, '0')}',
+      }).eq('id', userId);
       return _fetchProfile(userId);
     } on PostgrestException catch (e) {
+      if (e.code == '23505') throw const ServerException('Bu telefon nömrəsi artıq istifadə olunur');
       throw ServerException(e.message);
     }
   }

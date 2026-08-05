@@ -17,6 +17,16 @@ String _roleLabel(AppLocalizations l10n, UserRole role) {
   };
 }
 
+int _ageFrom(DateTime dateOfBirth) {
+  final now = DateTime.now();
+  var age = now.year - dateOfBirth.year;
+  if (now.month < dateOfBirth.month ||
+      (now.month == dateOfBirth.month && now.day < dateOfBirth.day)) {
+    age--;
+  }
+  return age;
+}
+
 class AdminUsersScreen extends ConsumerWidget {
   const AdminUsersScreen({super.key});
 
@@ -44,7 +54,12 @@ class AdminUsersScreen extends ConsumerWidget {
                   child: Text(user.fullName.isNotEmpty ? user.fullName[0].toUpperCase() : '?'),
                 ),
                 title: Text(user.fullName),
-                subtitle: Text(user.phone ?? user.email ?? ''),
+                subtitle: Text(
+                  [
+                    user.phone ?? user.email ?? '',
+                    if (user.dateOfBirth != null) l10n.adminUserAge(_ageFrom(user.dateOfBirth!)),
+                  ].where((s) => s.isNotEmpty).join(' · '),
+                ),
                 trailing: DropdownButton<UserRole>(
                   value: user.role,
                   underline: const SizedBox.shrink(),

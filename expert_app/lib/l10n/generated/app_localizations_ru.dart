@@ -161,6 +161,12 @@ class AppLocalizationsRu extends AppLocalizations {
   String get editProfileNameLabel => 'Имя, фамилия';
 
   @override
+  String get editProfilePhoneLabel => 'Контактный телефон';
+
+  @override
+  String get editProfileDateOfBirthLabel => 'Дата рождения';
+
+  @override
   String get editProfileSaveButton => 'Сохранить';
 
   @override
@@ -383,6 +389,9 @@ class AppLocalizationsRu extends AppLocalizations {
 
   @override
   String get openShopRayonLabel => 'Район';
+
+  @override
+  String get openShopPhoneLabel => 'Контактный телефон';
 
   @override
   String get openShopCategoriesLabel =>
@@ -623,6 +632,11 @@ class AppLocalizationsRu extends AppLocalizations {
 
   @override
   String get adminRoleAdmin => 'Админ';
+
+  @override
+  String adminUserAge(int age) {
+    return '$age лет';
+  }
 
   @override
   String get aiAssistantTitle => 'AI Помощник';

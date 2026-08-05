@@ -48,6 +48,7 @@ class OpenShopController extends AsyncNotifier<void> {
     String? rayon,
     double? latitude,
     double? longitude,
+    String? contactPhone,
     required List<String> categoryIds,
   }) async {
     state = const AsyncLoading();
@@ -58,6 +59,7 @@ class OpenShopController extends AsyncNotifier<void> {
       rayon: rayon,
       latitude: latitude,
       longitude: longitude,
+      contactPhone: contactPhone,
       categoryIds: categoryIds,
     ));
     return result.fold(

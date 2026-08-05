@@ -105,9 +105,17 @@ class AuthRepositoryImpl implements AuthRepository {
   }
 
   @override
-  Future<Either<Failure, UserEntity>> updateProfile({required String fullName}) async {
+  Future<Either<Failure, UserEntity>> updateProfile({
+    required String fullName,
+    String? phone,
+    DateTime? dateOfBirth,
+  }) async {
     try {
-      final model = await remoteDataSource.updateProfile(fullName: fullName);
+      final model = await remoteDataSource.updateProfile(
+        fullName: fullName,
+        phone: phone,
+        dateOfBirth: dateOfBirth,
+      );
       return Right(model.toEntity());
     } catch (e) {
       return Left(_mapException(e));

@@ -2,6 +2,7 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 import '../../../../core/errors/failure.dart';
 import '../../../../core/widgets/empty_state_view.dart';
@@ -15,6 +16,11 @@ class ShopDetailScreen extends ConsumerWidget {
   final String shopId;
 
   const ShopDetailScreen({super.key, required this.shopId});
+
+  Future<void> _callShop(String phone) async {
+    final uri = Uri(scheme: 'tel', path: phone);
+    await launchUrl(uri);
+  }
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -71,6 +77,13 @@ class ShopDetailScreen extends ConsumerWidget {
                               ],
                             ),
                           ),
+                          if (shop.contactPhone != null) ...[
+                            const SizedBox(width: 12),
+                            OutlinedButton(
+                              onPressed: () => _callShop(shop.contactPhone!),
+                              child: const Icon(Icons.phone_outlined),
+                            ),
+                          ],
                         ],
                       ),
                       const SizedBox(height: 20),

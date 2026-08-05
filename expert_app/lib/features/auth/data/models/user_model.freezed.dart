@@ -15,7 +15,7 @@ T _$identity<T>(T value) => value;
 /// @nodoc
 mixin _$UserModel {
 
- String get id; String? get phone; String? get email;@JsonKey(name: 'full_name') String get fullName;@JsonKey(name: 'avatar_url') String? get avatarUrl; String get role;@JsonKey(name: 'preferred_language') String get preferredLanguage;@JsonKey(name: 'is_verified') bool get isVerified;
+ String get id; String? get phone; String? get email;@JsonKey(name: 'full_name') String get fullName;@JsonKey(name: 'avatar_url') String? get avatarUrl;@JsonKey(name: 'date_of_birth') DateTime? get dateOfBirth; String get role;@JsonKey(name: 'preferred_language') String get preferredLanguage;@JsonKey(name: 'is_verified') bool get isVerified;
 /// Create a copy of UserModel
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
@@ -28,16 +28,16 @@ $UserModelCopyWith<UserModel> get copyWith => _$UserModelCopyWithImpl<UserModel>
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is UserModel&&(identical(other.id, id) || other.id == id)&&(identical(other.phone, phone) || other.phone == phone)&&(identical(other.email, email) || other.email == email)&&(identical(other.fullName, fullName) || other.fullName == fullName)&&(identical(other.avatarUrl, avatarUrl) || other.avatarUrl == avatarUrl)&&(identical(other.role, role) || other.role == role)&&(identical(other.preferredLanguage, preferredLanguage) || other.preferredLanguage == preferredLanguage)&&(identical(other.isVerified, isVerified) || other.isVerified == isVerified));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is UserModel&&(identical(other.id, id) || other.id == id)&&(identical(other.phone, phone) || other.phone == phone)&&(identical(other.email, email) || other.email == email)&&(identical(other.fullName, fullName) || other.fullName == fullName)&&(identical(other.avatarUrl, avatarUrl) || other.avatarUrl == avatarUrl)&&(identical(other.dateOfBirth, dateOfBirth) || other.dateOfBirth == dateOfBirth)&&(identical(other.role, role) || other.role == role)&&(identical(other.preferredLanguage, preferredLanguage) || other.preferredLanguage == preferredLanguage)&&(identical(other.isVerified, isVerified) || other.isVerified == isVerified));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
-int get hashCode => Object.hash(runtimeType,id,phone,email,fullName,avatarUrl,role,preferredLanguage,isVerified);
+int get hashCode => Object.hash(runtimeType,id,phone,email,fullName,avatarUrl,dateOfBirth,role,preferredLanguage,isVerified);
 
 @override
 String toString() {
-  return 'UserModel(id: $id, phone: $phone, email: $email, fullName: $fullName, avatarUrl: $avatarUrl, role: $role, preferredLanguage: $preferredLanguage, isVerified: $isVerified)';
+  return 'UserModel(id: $id, phone: $phone, email: $email, fullName: $fullName, avatarUrl: $avatarUrl, dateOfBirth: $dateOfBirth, role: $role, preferredLanguage: $preferredLanguage, isVerified: $isVerified)';
 }
 
 
@@ -48,7 +48,7 @@ abstract mixin class $UserModelCopyWith<$Res>  {
   factory $UserModelCopyWith(UserModel value, $Res Function(UserModel) _then) = _$UserModelCopyWithImpl;
 @useResult
 $Res call({
- String id, String? phone, String? email,@JsonKey(name: 'full_name') String fullName,@JsonKey(name: 'avatar_url') String? avatarUrl, String role,@JsonKey(name: 'preferred_language') String preferredLanguage,@JsonKey(name: 'is_verified') bool isVerified
+ String id, String? phone, String? email,@JsonKey(name: 'full_name') String fullName,@JsonKey(name: 'avatar_url') String? avatarUrl,@JsonKey(name: 'date_of_birth') DateTime? dateOfBirth, String role,@JsonKey(name: 'preferred_language') String preferredLanguage,@JsonKey(name: 'is_verified') bool isVerified
 });
 
 
@@ -65,14 +65,15 @@ class _$UserModelCopyWithImpl<$Res>
 
 /// Create a copy of UserModel
 /// with the given fields replaced by the non-null parameter values.
-@pragma('vm:prefer-inline') @override $Res call({Object? id = null,Object? phone = freezed,Object? email = freezed,Object? fullName = null,Object? avatarUrl = freezed,Object? role = null,Object? preferredLanguage = null,Object? isVerified = null,}) {
+@pragma('vm:prefer-inline') @override $Res call({Object? id = null,Object? phone = freezed,Object? email = freezed,Object? fullName = null,Object? avatarUrl = freezed,Object? dateOfBirth = freezed,Object? role = null,Object? preferredLanguage = null,Object? isVerified = null,}) {
   return _then(_self.copyWith(
 id: null == id ? _self.id : id // ignore: cast_nullable_to_non_nullable
 as String,phone: freezed == phone ? _self.phone : phone // ignore: cast_nullable_to_non_nullable
 as String?,email: freezed == email ? _self.email : email // ignore: cast_nullable_to_non_nullable
 as String?,fullName: null == fullName ? _self.fullName : fullName // ignore: cast_nullable_to_non_nullable
 as String,avatarUrl: freezed == avatarUrl ? _self.avatarUrl : avatarUrl // ignore: cast_nullable_to_non_nullable
-as String?,role: null == role ? _self.role : role // ignore: cast_nullable_to_non_nullable
+as String?,dateOfBirth: freezed == dateOfBirth ? _self.dateOfBirth : dateOfBirth // ignore: cast_nullable_to_non_nullable
+as DateTime?,role: null == role ? _self.role : role // ignore: cast_nullable_to_non_nullable
 as String,preferredLanguage: null == preferredLanguage ? _self.preferredLanguage : preferredLanguage // ignore: cast_nullable_to_non_nullable
 as String,isVerified: null == isVerified ? _self.isVerified : isVerified // ignore: cast_nullable_to_non_nullable
 as bool,
@@ -157,10 +158,10 @@ return $default(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( String id,  String? phone,  String? email, @JsonKey(name: 'full_name')  String fullName, @JsonKey(name: 'avatar_url')  String? avatarUrl,  String role, @JsonKey(name: 'preferred_language')  String preferredLanguage, @JsonKey(name: 'is_verified')  bool isVerified)?  $default,{required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( String id,  String? phone,  String? email, @JsonKey(name: 'full_name')  String fullName, @JsonKey(name: 'avatar_url')  String? avatarUrl, @JsonKey(name: 'date_of_birth')  DateTime? dateOfBirth,  String role, @JsonKey(name: 'preferred_language')  String preferredLanguage, @JsonKey(name: 'is_verified')  bool isVerified)?  $default,{required TResult orElse(),}) {final _that = this;
 switch (_that) {
 case _UserModel() when $default != null:
-return $default(_that.id,_that.phone,_that.email,_that.fullName,_that.avatarUrl,_that.role,_that.preferredLanguage,_that.isVerified);case _:
+return $default(_that.id,_that.phone,_that.email,_that.fullName,_that.avatarUrl,_that.dateOfBirth,_that.role,_that.preferredLanguage,_that.isVerified);case _:
   return orElse();
 
 }
@@ -178,10 +179,10 @@ return $default(_that.id,_that.phone,_that.email,_that.fullName,_that.avatarUrl,
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( String id,  String? phone,  String? email, @JsonKey(name: 'full_name')  String fullName, @JsonKey(name: 'avatar_url')  String? avatarUrl,  String role, @JsonKey(name: 'preferred_language')  String preferredLanguage, @JsonKey(name: 'is_verified')  bool isVerified)  $default,) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( String id,  String? phone,  String? email, @JsonKey(name: 'full_name')  String fullName, @JsonKey(name: 'avatar_url')  String? avatarUrl, @JsonKey(name: 'date_of_birth')  DateTime? dateOfBirth,  String role, @JsonKey(name: 'preferred_language')  String preferredLanguage, @JsonKey(name: 'is_verified')  bool isVerified)  $default,) {final _that = this;
 switch (_that) {
 case _UserModel():
-return $default(_that.id,_that.phone,_that.email,_that.fullName,_that.avatarUrl,_that.role,_that.preferredLanguage,_that.isVerified);}
+return $default(_that.id,_that.phone,_that.email,_that.fullName,_that.avatarUrl,_that.dateOfBirth,_that.role,_that.preferredLanguage,_that.isVerified);}
 }
 /// A variant of `when` that fallback to returning `null`
 ///
@@ -195,10 +196,10 @@ return $default(_that.id,_that.phone,_that.email,_that.fullName,_that.avatarUrl,
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( String id,  String? phone,  String? email, @JsonKey(name: 'full_name')  String fullName, @JsonKey(name: 'avatar_url')  String? avatarUrl,  String role, @JsonKey(name: 'preferred_language')  String preferredLanguage, @JsonKey(name: 'is_verified')  bool isVerified)?  $default,) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( String id,  String? phone,  String? email, @JsonKey(name: 'full_name')  String fullName, @JsonKey(name: 'avatar_url')  String? avatarUrl, @JsonKey(name: 'date_of_birth')  DateTime? dateOfBirth,  String role, @JsonKey(name: 'preferred_language')  String preferredLanguage, @JsonKey(name: 'is_verified')  bool isVerified)?  $default,) {final _that = this;
 switch (_that) {
 case _UserModel() when $default != null:
-return $default(_that.id,_that.phone,_that.email,_that.fullName,_that.avatarUrl,_that.role,_that.preferredLanguage,_that.isVerified);case _:
+return $default(_that.id,_that.phone,_that.email,_that.fullName,_that.avatarUrl,_that.dateOfBirth,_that.role,_that.preferredLanguage,_that.isVerified);case _:
   return null;
 
 }
@@ -210,7 +211,7 @@ return $default(_that.id,_that.phone,_that.email,_that.fullName,_that.avatarUrl,
 @JsonSerializable()
 
 class _UserModel extends UserModel {
-  const _UserModel({required this.id, this.phone, this.email, @JsonKey(name: 'full_name') required this.fullName, @JsonKey(name: 'avatar_url') this.avatarUrl, this.role = 'customer', @JsonKey(name: 'preferred_language') this.preferredLanguage = 'az', @JsonKey(name: 'is_verified') this.isVerified = false}): super._();
+  const _UserModel({required this.id, this.phone, this.email, @JsonKey(name: 'full_name') required this.fullName, @JsonKey(name: 'avatar_url') this.avatarUrl, @JsonKey(name: 'date_of_birth') this.dateOfBirth, this.role = 'customer', @JsonKey(name: 'preferred_language') this.preferredLanguage = 'az', @JsonKey(name: 'is_verified') this.isVerified = false}): super._();
   factory _UserModel.fromJson(Map<String, dynamic> json) => _$UserModelFromJson(json);
 
 @override final  String id;
@@ -218,6 +219,7 @@ class _UserModel extends UserModel {
 @override final  String? email;
 @override@JsonKey(name: 'full_name') final  String fullName;
 @override@JsonKey(name: 'avatar_url') final  String? avatarUrl;
+@override@JsonKey(name: 'date_of_birth') final  DateTime? dateOfBirth;
 @override@JsonKey() final  String role;
 @override@JsonKey(name: 'preferred_language') final  String preferredLanguage;
 @override@JsonKey(name: 'is_verified') final  bool isVerified;
@@ -235,16 +237,16 @@ Map<String, dynamic> toJson() {
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is _UserModel&&(identical(other.id, id) || other.id == id)&&(identical(other.phone, phone) || other.phone == phone)&&(identical(other.email, email) || other.email == email)&&(identical(other.fullName, fullName) || other.fullName == fullName)&&(identical(other.avatarUrl, avatarUrl) || other.avatarUrl == avatarUrl)&&(identical(other.role, role) || other.role == role)&&(identical(other.preferredLanguage, preferredLanguage) || other.preferredLanguage == preferredLanguage)&&(identical(other.isVerified, isVerified) || other.isVerified == isVerified));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _UserModel&&(identical(other.id, id) || other.id == id)&&(identical(other.phone, phone) || other.phone == phone)&&(identical(other.email, email) || other.email == email)&&(identical(other.fullName, fullName) || other.fullName == fullName)&&(identical(other.avatarUrl, avatarUrl) || other.avatarUrl == avatarUrl)&&(identical(other.dateOfBirth, dateOfBirth) || other.dateOfBirth == dateOfBirth)&&(identical(other.role, role) || other.role == role)&&(identical(other.preferredLanguage, preferredLanguage) || other.preferredLanguage == preferredLanguage)&&(identical(other.isVerified, isVerified) || other.isVerified == isVerified));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
-int get hashCode => Object.hash(runtimeType,id,phone,email,fullName,avatarUrl,role,preferredLanguage,isVerified);
+int get hashCode => Object.hash(runtimeType,id,phone,email,fullName,avatarUrl,dateOfBirth,role,preferredLanguage,isVerified);
 
 @override
 String toString() {
-  return 'UserModel(id: $id, phone: $phone, email: $email, fullName: $fullName, avatarUrl: $avatarUrl, role: $role, preferredLanguage: $preferredLanguage, isVerified: $isVerified)';
+  return 'UserModel(id: $id, phone: $phone, email: $email, fullName: $fullName, avatarUrl: $avatarUrl, dateOfBirth: $dateOfBirth, role: $role, preferredLanguage: $preferredLanguage, isVerified: $isVerified)';
 }
 
 
@@ -255,7 +257,7 @@ abstract mixin class _$UserModelCopyWith<$Res> implements $UserModelCopyWith<$Re
   factory _$UserModelCopyWith(_UserModel value, $Res Function(_UserModel) _then) = __$UserModelCopyWithImpl;
 @override @useResult
 $Res call({
- String id, String? phone, String? email,@JsonKey(name: 'full_name') String fullName,@JsonKey(name: 'avatar_url') String? avatarUrl, String role,@JsonKey(name: 'preferred_language') String preferredLanguage,@JsonKey(name: 'is_verified') bool isVerified
+ String id, String? phone, String? email,@JsonKey(name: 'full_name') String fullName,@JsonKey(name: 'avatar_url') String? avatarUrl,@JsonKey(name: 'date_of_birth') DateTime? dateOfBirth, String role,@JsonKey(name: 'preferred_language') String preferredLanguage,@JsonKey(name: 'is_verified') bool isVerified
 });
 
 
@@ -272,14 +274,15 @@ class __$UserModelCopyWithImpl<$Res>
 
 /// Create a copy of UserModel
 /// with the given fields replaced by the non-null parameter values.
-@override @pragma('vm:prefer-inline') $Res call({Object? id = null,Object? phone = freezed,Object? email = freezed,Object? fullName = null,Object? avatarUrl = freezed,Object? role = null,Object? preferredLanguage = null,Object? isVerified = null,}) {
+@override @pragma('vm:prefer-inline') $Res call({Object? id = null,Object? phone = freezed,Object? email = freezed,Object? fullName = null,Object? avatarUrl = freezed,Object? dateOfBirth = freezed,Object? role = null,Object? preferredLanguage = null,Object? isVerified = null,}) {
   return _then(_UserModel(
 id: null == id ? _self.id : id // ignore: cast_nullable_to_non_nullable
 as String,phone: freezed == phone ? _self.phone : phone // ignore: cast_nullable_to_non_nullable
 as String?,email: freezed == email ? _self.email : email // ignore: cast_nullable_to_non_nullable
 as String?,fullName: null == fullName ? _self.fullName : fullName // ignore: cast_nullable_to_non_nullable
 as String,avatarUrl: freezed == avatarUrl ? _self.avatarUrl : avatarUrl // ignore: cast_nullable_to_non_nullable
-as String?,role: null == role ? _self.role : role // ignore: cast_nullable_to_non_nullable
+as String?,dateOfBirth: freezed == dateOfBirth ? _self.dateOfBirth : dateOfBirth // ignore: cast_nullable_to_non_nullable
+as DateTime?,role: null == role ? _self.role : role // ignore: cast_nullable_to_non_nullable
 as String,preferredLanguage: null == preferredLanguage ? _self.preferredLanguage : preferredLanguage // ignore: cast_nullable_to_non_nullable
 as String,isVerified: null == isVerified ? _self.isVerified : isVerified // ignore: cast_nullable_to_non_nullable
 as bool,

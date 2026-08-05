@@ -18,6 +18,7 @@ abstract class ShopRepository {
     String? rayon,
     double? latitude,
     double? longitude,
+    String? contactPhone,
     required List<String> categoryIds,
   });
 }

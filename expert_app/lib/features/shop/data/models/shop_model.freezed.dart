@@ -14,7 +14,7 @@ T _$identity<T>(T value) => value;
 /// @nodoc
 mixin _$ShopModel {
 
- String get id; String get name; String? get logoUrl; String? get address; String? get rayon; double? get latitude; double? get longitude; double get rating; bool get isApproved;
+ String get id; String get name; String? get logoUrl; String? get address; String? get rayon; double? get latitude; double? get longitude; String? get contactPhone; double get rating; bool get isApproved;
 /// Create a copy of ShopModel
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
@@ -25,16 +25,16 @@ $ShopModelCopyWith<ShopModel> get copyWith => _$ShopModelCopyWithImpl<ShopModel>
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is ShopModel&&(identical(other.id, id) || other.id == id)&&(identical(other.name, name) || other.name == name)&&(identical(other.logoUrl, logoUrl) || other.logoUrl == logoUrl)&&(identical(other.address, address) || other.address == address)&&(identical(other.rayon, rayon) || other.rayon == rayon)&&(identical(other.latitude, latitude) || other.latitude == latitude)&&(identical(other.longitude, longitude) || other.longitude == longitude)&&(identical(other.rating, rating) || other.rating == rating)&&(identical(other.isApproved, isApproved) || other.isApproved == isApproved));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is ShopModel&&(identical(other.id, id) || other.id == id)&&(identical(other.name, name) || other.name == name)&&(identical(other.logoUrl, logoUrl) || other.logoUrl == logoUrl)&&(identical(other.address, address) || other.address == address)&&(identical(other.rayon, rayon) || other.rayon == rayon)&&(identical(other.latitude, latitude) || other.latitude == latitude)&&(identical(other.longitude, longitude) || other.longitude == longitude)&&(identical(other.contactPhone, contactPhone) || other.contactPhone == contactPhone)&&(identical(other.rating, rating) || other.rating == rating)&&(identical(other.isApproved, isApproved) || other.isApproved == isApproved));
 }
 
 
 @override
-int get hashCode => Object.hash(runtimeType,id,name,logoUrl,address,rayon,latitude,longitude,rating,isApproved);
+int get hashCode => Object.hash(runtimeType,id,name,logoUrl,address,rayon,latitude,longitude,contactPhone,rating,isApproved);
 
 @override
 String toString() {
-  return 'ShopModel(id: $id, name: $name, logoUrl: $logoUrl, address: $address, rayon: $rayon, latitude: $latitude, longitude: $longitude, rating: $rating, isApproved: $isApproved)';
+  return 'ShopModel(id: $id, name: $name, logoUrl: $logoUrl, address: $address, rayon: $rayon, latitude: $latitude, longitude: $longitude, contactPhone: $contactPhone, rating: $rating, isApproved: $isApproved)';
 }
 
 
@@ -45,7 +45,7 @@ abstract mixin class $ShopModelCopyWith<$Res>  {
   factory $ShopModelCopyWith(ShopModel value, $Res Function(ShopModel) _then) = _$ShopModelCopyWithImpl;
 @useResult
 $Res call({
- String id, String name, String? logoUrl, String? address, String? rayon, double? latitude, double? longitude, double rating, bool isApproved
+ String id, String name, String? logoUrl, String? address, String? rayon, double? latitude, double? longitude, String? contactPhone, double rating, bool isApproved
 });
 
 
@@ -62,7 +62,7 @@ class _$ShopModelCopyWithImpl<$Res>
 
 /// Create a copy of ShopModel
 /// with the given fields replaced by the non-null parameter values.
-@pragma('vm:prefer-inline') @override $Res call({Object? id = null,Object? name = null,Object? logoUrl = freezed,Object? address = freezed,Object? rayon = freezed,Object? latitude = freezed,Object? longitude = freezed,Object? rating = null,Object? isApproved = null,}) {
+@pragma('vm:prefer-inline') @override $Res call({Object? id = null,Object? name = null,Object? logoUrl = freezed,Object? address = freezed,Object? rayon = freezed,Object? latitude = freezed,Object? longitude = freezed,Object? contactPhone = freezed,Object? rating = null,Object? isApproved = null,}) {
   return _then(_self.copyWith(
 id: null == id ? _self.id : id // ignore: cast_nullable_to_non_nullable
 as String,name: null == name ? _self.name : name // ignore: cast_nullable_to_non_nullable
@@ -71,7 +71,8 @@ as String?,address: freezed == address ? _self.address : address // ignore: cast
 as String?,rayon: freezed == rayon ? _self.rayon : rayon // ignore: cast_nullable_to_non_nullable
 as String?,latitude: freezed == latitude ? _self.latitude : latitude // ignore: cast_nullable_to_non_nullable
 as double?,longitude: freezed == longitude ? _self.longitude : longitude // ignore: cast_nullable_to_non_nullable
-as double?,rating: null == rating ? _self.rating : rating // ignore: cast_nullable_to_non_nullable
+as double?,contactPhone: freezed == contactPhone ? _self.contactPhone : contactPhone // ignore: cast_nullable_to_non_nullable
+as String?,rating: null == rating ? _self.rating : rating // ignore: cast_nullable_to_non_nullable
 as double,isApproved: null == isApproved ? _self.isApproved : isApproved // ignore: cast_nullable_to_non_nullable
 as bool,
   ));
@@ -155,10 +156,10 @@ return $default(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( String id,  String name,  String? logoUrl,  String? address,  String? rayon,  double? latitude,  double? longitude,  double rating,  bool isApproved)?  $default,{required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( String id,  String name,  String? logoUrl,  String? address,  String? rayon,  double? latitude,  double? longitude,  String? contactPhone,  double rating,  bool isApproved)?  $default,{required TResult orElse(),}) {final _that = this;
 switch (_that) {
 case _ShopModel() when $default != null:
-return $default(_that.id,_that.name,_that.logoUrl,_that.address,_that.rayon,_that.latitude,_that.longitude,_that.rating,_that.isApproved);case _:
+return $default(_that.id,_that.name,_that.logoUrl,_that.address,_that.rayon,_that.latitude,_that.longitude,_that.contactPhone,_that.rating,_that.isApproved);case _:
   return orElse();
 
 }
@@ -176,10 +177,10 @@ return $default(_that.id,_that.name,_that.logoUrl,_that.address,_that.rayon,_tha
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( String id,  String name,  String? logoUrl,  String? address,  String? rayon,  double? latitude,  double? longitude,  double rating,  bool isApproved)  $default,) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( String id,  String name,  String? logoUrl,  String? address,  String? rayon,  double? latitude,  double? longitude,  String? contactPhone,  double rating,  bool isApproved)  $default,) {final _that = this;
 switch (_that) {
 case _ShopModel():
-return $default(_that.id,_that.name,_that.logoUrl,_that.address,_that.rayon,_that.latitude,_that.longitude,_that.rating,_that.isApproved);}
+return $default(_that.id,_that.name,_that.logoUrl,_that.address,_that.rayon,_that.latitude,_that.longitude,_that.contactPhone,_that.rating,_that.isApproved);}
 }
 /// A variant of `when` that fallback to returning `null`
 ///
@@ -193,10 +194,10 @@ return $default(_that.id,_that.name,_that.logoUrl,_that.address,_that.rayon,_tha
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( String id,  String name,  String? logoUrl,  String? address,  String? rayon,  double? latitude,  double? longitude,  double rating,  bool isApproved)?  $default,) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( String id,  String name,  String? logoUrl,  String? address,  String? rayon,  double? latitude,  double? longitude,  String? contactPhone,  double rating,  bool isApproved)?  $default,) {final _that = this;
 switch (_that) {
 case _ShopModel() when $default != null:
-return $default(_that.id,_that.name,_that.logoUrl,_that.address,_that.rayon,_that.latitude,_that.longitude,_that.rating,_that.isApproved);case _:
+return $default(_that.id,_that.name,_that.logoUrl,_that.address,_that.rayon,_that.latitude,_that.longitude,_that.contactPhone,_that.rating,_that.isApproved);case _:
   return null;
 
 }
@@ -208,7 +209,7 @@ return $default(_that.id,_that.name,_that.logoUrl,_that.address,_that.rayon,_tha
 
 
 class _ShopModel extends ShopModel {
-  const _ShopModel({required this.id, required this.name, this.logoUrl, this.address, this.rayon, this.latitude, this.longitude, required this.rating, required this.isApproved}): super._();
+  const _ShopModel({required this.id, required this.name, this.logoUrl, this.address, this.rayon, this.latitude, this.longitude, this.contactPhone, required this.rating, required this.isApproved}): super._();
   
 
 @override final  String id;
@@ -218,6 +219,7 @@ class _ShopModel extends ShopModel {
 @override final  String? rayon;
 @override final  double? latitude;
 @override final  double? longitude;
+@override final  String? contactPhone;
 @override final  double rating;
 @override final  bool isApproved;
 
@@ -231,16 +233,16 @@ _$ShopModelCopyWith<_ShopModel> get copyWith => __$ShopModelCopyWithImpl<_ShopMo
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is _ShopModel&&(identical(other.id, id) || other.id == id)&&(identical(other.name, name) || other.name == name)&&(identical(other.logoUrl, logoUrl) || other.logoUrl == logoUrl)&&(identical(other.address, address) || other.address == address)&&(identical(other.rayon, rayon) || other.rayon == rayon)&&(identical(other.latitude, latitude) || other.latitude == latitude)&&(identical(other.longitude, longitude) || other.longitude == longitude)&&(identical(other.rating, rating) || other.rating == rating)&&(identical(other.isApproved, isApproved) || other.isApproved == isApproved));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _ShopModel&&(identical(other.id, id) || other.id == id)&&(identical(other.name, name) || other.name == name)&&(identical(other.logoUrl, logoUrl) || other.logoUrl == logoUrl)&&(identical(other.address, address) || other.address == address)&&(identical(other.rayon, rayon) || other.rayon == rayon)&&(identical(other.latitude, latitude) || other.latitude == latitude)&&(identical(other.longitude, longitude) || other.longitude == longitude)&&(identical(other.contactPhone, contactPhone) || other.contactPhone == contactPhone)&&(identical(other.rating, rating) || other.rating == rating)&&(identical(other.isApproved, isApproved) || other.isApproved == isApproved));
 }
 
 
 @override
-int get hashCode => Object.hash(runtimeType,id,name,logoUrl,address,rayon,latitude,longitude,rating,isApproved);
+int get hashCode => Object.hash(runtimeType,id,name,logoUrl,address,rayon,latitude,longitude,contactPhone,rating,isApproved);
 
 @override
 String toString() {
-  return 'ShopModel(id: $id, name: $name, logoUrl: $logoUrl, address: $address, rayon: $rayon, latitude: $latitude, longitude: $longitude, rating: $rating, isApproved: $isApproved)';
+  return 'ShopModel(id: $id, name: $name, logoUrl: $logoUrl, address: $address, rayon: $rayon, latitude: $latitude, longitude: $longitude, contactPhone: $contactPhone, rating: $rating, isApproved: $isApproved)';
 }
 
 
@@ -251,7 +253,7 @@ abstract mixin class _$ShopModelCopyWith<$Res> implements $ShopModelCopyWith<$Re
   factory _$ShopModelCopyWith(_ShopModel value, $Res Function(_ShopModel) _then) = __$ShopModelCopyWithImpl;
 @override @useResult
 $Res call({
- String id, String name, String? logoUrl, String? address, String? rayon, double? latitude, double? longitude, double rating, bool isApproved
+ String id, String name, String? logoUrl, String? address, String? rayon, double? latitude, double? longitude, String? contactPhone, double rating, bool isApproved
 });
 
 
@@ -268,7 +270,7 @@ class __$ShopModelCopyWithImpl<$Res>
 
 /// Create a copy of ShopModel
 /// with the given fields replaced by the non-null parameter values.
-@override @pragma('vm:prefer-inline') $Res call({Object? id = null,Object? name = null,Object? logoUrl = freezed,Object? address = freezed,Object? rayon = freezed,Object? latitude = freezed,Object? longitude = freezed,Object? rating = null,Object? isApproved = null,}) {
+@override @pragma('vm:prefer-inline') $Res call({Object? id = null,Object? name = null,Object? logoUrl = freezed,Object? address = freezed,Object? rayon = freezed,Object? latitude = freezed,Object? longitude = freezed,Object? contactPhone = freezed,Object? rating = null,Object? isApproved = null,}) {
   return _then(_ShopModel(
 id: null == id ? _self.id : id // ignore: cast_nullable_to_non_nullable
 as String,name: null == name ? _self.name : name // ignore: cast_nullable_to_non_nullable
@@ -277,7 +279,8 @@ as String?,address: freezed == address ? _self.address : address // ignore: cast
 as String?,rayon: freezed == rayon ? _self.rayon : rayon // ignore: cast_nullable_to_non_nullable
 as String?,latitude: freezed == latitude ? _self.latitude : latitude // ignore: cast_nullable_to_non_nullable
 as double?,longitude: freezed == longitude ? _self.longitude : longitude // ignore: cast_nullable_to_non_nullable
-as double?,rating: null == rating ? _self.rating : rating // ignore: cast_nullable_to_non_nullable
+as double?,contactPhone: freezed == contactPhone ? _self.contactPhone : contactPhone // ignore: cast_nullable_to_non_nullable
+as String?,rating: null == rating ? _self.rating : rating // ignore: cast_nullable_to_non_nullable
 as double,isApproved: null == isApproved ? _self.isApproved : isApproved // ignore: cast_nullable_to_non_nullable
 as bool,
   ));

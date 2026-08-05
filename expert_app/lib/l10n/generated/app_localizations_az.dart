@@ -161,6 +161,12 @@ class AppLocalizationsAz extends AppLocalizations {
   String get editProfileNameLabel => 'Ad, Soyad';
 
   @override
+  String get editProfilePhoneLabel => 'Əlaqə nömrəsi';
+
+  @override
+  String get editProfileDateOfBirthLabel => 'Doğum tarixi';
+
+  @override
   String get editProfileSaveButton => 'Yadda saxla';
 
   @override
@@ -383,6 +389,9 @@ class AppLocalizationsAz extends AppLocalizations {
 
   @override
   String get openShopRayonLabel => 'Rayon';
+
+  @override
+  String get openShopPhoneLabel => 'Əlaqə nömrəsi';
 
   @override
   String get openShopCategoriesLabel => 'Satılan material kateqoriyaları';
@@ -623,6 +632,11 @@ class AppLocalizationsAz extends AppLocalizations {
 
   @override
   String get adminRoleAdmin => 'Admin';
+
+  @override
+  String adminUserAge(int age) {
+    return '$age yaş';
+  }
 
   @override
   String get aiAssistantTitle => 'AI Köməkçi';

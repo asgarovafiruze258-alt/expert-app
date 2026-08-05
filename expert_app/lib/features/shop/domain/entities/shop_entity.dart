@@ -12,6 +12,7 @@ sealed class ShopEntity with _$ShopEntity {
     String? rayon,
     double? latitude,
     double? longitude,
+    String? contactPhone,
     @Default(0) double rating,
     @Default(false) bool isApproved,
   }) = _ShopEntity;

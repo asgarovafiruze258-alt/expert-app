@@ -14,7 +14,7 @@ T _$identity<T>(T value) => value;
 /// @nodoc
 mixin _$UserEntity {
 
- String get id; String? get phone; String? get email; String get fullName; String? get avatarUrl; UserRole get role; String get preferredLanguage; bool get isVerified;
+ String get id; String? get phone; String? get email; String get fullName; String? get avatarUrl; DateTime? get dateOfBirth; UserRole get role; String get preferredLanguage; bool get isVerified;
 /// Create a copy of UserEntity
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
@@ -25,16 +25,16 @@ $UserEntityCopyWith<UserEntity> get copyWith => _$UserEntityCopyWithImpl<UserEnt
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is UserEntity&&(identical(other.id, id) || other.id == id)&&(identical(other.phone, phone) || other.phone == phone)&&(identical(other.email, email) || other.email == email)&&(identical(other.fullName, fullName) || other.fullName == fullName)&&(identical(other.avatarUrl, avatarUrl) || other.avatarUrl == avatarUrl)&&(identical(other.role, role) || other.role == role)&&(identical(other.preferredLanguage, preferredLanguage) || other.preferredLanguage == preferredLanguage)&&(identical(other.isVerified, isVerified) || other.isVerified == isVerified));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is UserEntity&&(identical(other.id, id) || other.id == id)&&(identical(other.phone, phone) || other.phone == phone)&&(identical(other.email, email) || other.email == email)&&(identical(other.fullName, fullName) || other.fullName == fullName)&&(identical(other.avatarUrl, avatarUrl) || other.avatarUrl == avatarUrl)&&(identical(other.dateOfBirth, dateOfBirth) || other.dateOfBirth == dateOfBirth)&&(identical(other.role, role) || other.role == role)&&(identical(other.preferredLanguage, preferredLanguage) || other.preferredLanguage == preferredLanguage)&&(identical(other.isVerified, isVerified) || other.isVerified == isVerified));
 }
 
 
 @override
-int get hashCode => Object.hash(runtimeType,id,phone,email,fullName,avatarUrl,role,preferredLanguage,isVerified);
+int get hashCode => Object.hash(runtimeType,id,phone,email,fullName,avatarUrl,dateOfBirth,role,preferredLanguage,isVerified);
 
 @override
 String toString() {
-  return 'UserEntity(id: $id, phone: $phone, email: $email, fullName: $fullName, avatarUrl: $avatarUrl, role: $role, preferredLanguage: $preferredLanguage, isVerified: $isVerified)';
+  return 'UserEntity(id: $id, phone: $phone, email: $email, fullName: $fullName, avatarUrl: $avatarUrl, dateOfBirth: $dateOfBirth, role: $role, preferredLanguage: $preferredLanguage, isVerified: $isVerified)';
 }
 
 
@@ -45,7 +45,7 @@ abstract mixin class $UserEntityCopyWith<$Res>  {
   factory $UserEntityCopyWith(UserEntity value, $Res Function(UserEntity) _then) = _$UserEntityCopyWithImpl;
 @useResult
 $Res call({
- String id, String? phone, String? email, String fullName, String? avatarUrl, UserRole role, String preferredLanguage, bool isVerified
+ String id, String? phone, String? email, String fullName, String? avatarUrl, DateTime? dateOfBirth, UserRole role, String preferredLanguage, bool isVerified
 });
 
 
@@ -62,14 +62,15 @@ class _$UserEntityCopyWithImpl<$Res>
 
 /// Create a copy of UserEntity
 /// with the given fields replaced by the non-null parameter values.
-@pragma('vm:prefer-inline') @override $Res call({Object? id = null,Object? phone = freezed,Object? email = freezed,Object? fullName = null,Object? avatarUrl = freezed,Object? role = null,Object? preferredLanguage = null,Object? isVerified = null,}) {
+@pragma('vm:prefer-inline') @override $Res call({Object? id = null,Object? phone = freezed,Object? email = freezed,Object? fullName = null,Object? avatarUrl = freezed,Object? dateOfBirth = freezed,Object? role = null,Object? preferredLanguage = null,Object? isVerified = null,}) {
   return _then(_self.copyWith(
 id: null == id ? _self.id : id // ignore: cast_nullable_to_non_nullable
 as String,phone: freezed == phone ? _self.phone : phone // ignore: cast_nullable_to_non_nullable
 as String?,email: freezed == email ? _self.email : email // ignore: cast_nullable_to_non_nullable
 as String?,fullName: null == fullName ? _self.fullName : fullName // ignore: cast_nullable_to_non_nullable
 as String,avatarUrl: freezed == avatarUrl ? _self.avatarUrl : avatarUrl // ignore: cast_nullable_to_non_nullable
-as String?,role: null == role ? _self.role : role // ignore: cast_nullable_to_non_nullable
+as String?,dateOfBirth: freezed == dateOfBirth ? _self.dateOfBirth : dateOfBirth // ignore: cast_nullable_to_non_nullable
+as DateTime?,role: null == role ? _self.role : role // ignore: cast_nullable_to_non_nullable
 as UserRole,preferredLanguage: null == preferredLanguage ? _self.preferredLanguage : preferredLanguage // ignore: cast_nullable_to_non_nullable
 as String,isVerified: null == isVerified ? _self.isVerified : isVerified // ignore: cast_nullable_to_non_nullable
 as bool,
@@ -154,10 +155,10 @@ return $default(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( String id,  String? phone,  String? email,  String fullName,  String? avatarUrl,  UserRole role,  String preferredLanguage,  bool isVerified)?  $default,{required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( String id,  String? phone,  String? email,  String fullName,  String? avatarUrl,  DateTime? dateOfBirth,  UserRole role,  String preferredLanguage,  bool isVerified)?  $default,{required TResult orElse(),}) {final _that = this;
 switch (_that) {
 case _UserEntity() when $default != null:
-return $default(_that.id,_that.phone,_that.email,_that.fullName,_that.avatarUrl,_that.role,_that.preferredLanguage,_that.isVerified);case _:
+return $default(_that.id,_that.phone,_that.email,_that.fullName,_that.avatarUrl,_that.dateOfBirth,_that.role,_that.preferredLanguage,_that.isVerified);case _:
   return orElse();
 
 }
@@ -175,10 +176,10 @@ return $default(_that.id,_that.phone,_that.email,_that.fullName,_that.avatarUrl,
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( String id,  String? phone,  String? email,  String fullName,  String? avatarUrl,  UserRole role,  String preferredLanguage,  bool isVerified)  $default,) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( String id,  String? phone,  String? email,  String fullName,  String? avatarUrl,  DateTime? dateOfBirth,  UserRole role,  String preferredLanguage,  bool isVerified)  $default,) {final _that = this;
 switch (_that) {
 case _UserEntity():
-return $default(_that.id,_that.phone,_that.email,_that.fullName,_that.avatarUrl,_that.role,_that.preferredLanguage,_that.isVerified);}
+return $default(_that.id,_that.phone,_that.email,_that.fullName,_that.avatarUrl,_that.dateOfBirth,_that.role,_that.preferredLanguage,_that.isVerified);}
 }
 /// A variant of `when` that fallback to returning `null`
 ///
@@ -192,10 +193,10 @@ return $default(_that.id,_that.phone,_that.email,_that.fullName,_that.avatarUrl,
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( String id,  String? phone,  String? email,  String fullName,  String? avatarUrl,  UserRole role,  String preferredLanguage,  bool isVerified)?  $default,) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( String id,  String? phone,  String? email,  String fullName,  String? avatarUrl,  DateTime? dateOfBirth,  UserRole role,  String preferredLanguage,  bool isVerified)?  $default,) {final _that = this;
 switch (_that) {
 case _UserEntity() when $default != null:
-return $default(_that.id,_that.phone,_that.email,_that.fullName,_that.avatarUrl,_that.role,_that.preferredLanguage,_that.isVerified);case _:
+return $default(_that.id,_that.phone,_that.email,_that.fullName,_that.avatarUrl,_that.dateOfBirth,_that.role,_that.preferredLanguage,_that.isVerified);case _:
   return null;
 
 }
@@ -207,7 +208,7 @@ return $default(_that.id,_that.phone,_that.email,_that.fullName,_that.avatarUrl,
 
 
 class _UserEntity implements UserEntity {
-  const _UserEntity({required this.id, this.phone, this.email, required this.fullName, this.avatarUrl, required this.role, required this.preferredLanguage, required this.isVerified});
+  const _UserEntity({required this.id, this.phone, this.email, required this.fullName, this.avatarUrl, this.dateOfBirth, required this.role, required this.preferredLanguage, required this.isVerified});
   
 
 @override final  String id;
@@ -215,6 +216,7 @@ class _UserEntity implements UserEntity {
 @override final  String? email;
 @override final  String fullName;
 @override final  String? avatarUrl;
+@override final  DateTime? dateOfBirth;
 @override final  UserRole role;
 @override final  String preferredLanguage;
 @override final  bool isVerified;
@@ -229,16 +231,16 @@ _$UserEntityCopyWith<_UserEntity> get copyWith => __$UserEntityCopyWithImpl<_Use
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is _UserEntity&&(identical(other.id, id) || other.id == id)&&(identical(other.phone, phone) || other.phone == phone)&&(identical(other.email, email) || other.email == email)&&(identical(other.fullName, fullName) || other.fullName == fullName)&&(identical(other.avatarUrl, avatarUrl) || other.avatarUrl == avatarUrl)&&(identical(other.role, role) || other.role == role)&&(identical(other.preferredLanguage, preferredLanguage) || other.preferredLanguage == preferredLanguage)&&(identical(other.isVerified, isVerified) || other.isVerified == isVerified));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _UserEntity&&(identical(other.id, id) || other.id == id)&&(identical(other.phone, phone) || other.phone == phone)&&(identical(other.email, email) || other.email == email)&&(identical(other.fullName, fullName) || other.fullName == fullName)&&(identical(other.avatarUrl, avatarUrl) || other.avatarUrl == avatarUrl)&&(identical(other.dateOfBirth, dateOfBirth) || other.dateOfBirth == dateOfBirth)&&(identical(other.role, role) || other.role == role)&&(identical(other.preferredLanguage, preferredLanguage) || other.preferredLanguage == preferredLanguage)&&(identical(other.isVerified, isVerified) || other.isVerified == isVerified));
 }
 
 
 @override
-int get hashCode => Object.hash(runtimeType,id,phone,email,fullName,avatarUrl,role,preferredLanguage,isVerified);
+int get hashCode => Object.hash(runtimeType,id,phone,email,fullName,avatarUrl,dateOfBirth,role,preferredLanguage,isVerified);
 
 @override
 String toString() {
-  return 'UserEntity(id: $id, phone: $phone, email: $email, fullName: $fullName, avatarUrl: $avatarUrl, role: $role, preferredLanguage: $preferredLanguage, isVerified: $isVerified)';
+  return 'UserEntity(id: $id, phone: $phone, email: $email, fullName: $fullName, avatarUrl: $avatarUrl, dateOfBirth: $dateOfBirth, role: $role, preferredLanguage: $preferredLanguage, isVerified: $isVerified)';
 }
 
 
@@ -249,7 +251,7 @@ abstract mixin class _$UserEntityCopyWith<$Res> implements $UserEntityCopyWith<$
   factory _$UserEntityCopyWith(_UserEntity value, $Res Function(_UserEntity) _then) = __$UserEntityCopyWithImpl;
 @override @useResult
 $Res call({
- String id, String? phone, String? email, String fullName, String? avatarUrl, UserRole role, String preferredLanguage, bool isVerified
+ String id, String? phone, String? email, String fullName, String? avatarUrl, DateTime? dateOfBirth, UserRole role, String preferredLanguage, bool isVerified
 });
 
 
@@ -266,14 +268,15 @@ class __$UserEntityCopyWithImpl<$Res>
 
 /// Create a copy of UserEntity
 /// with the given fields replaced by the non-null parameter values.
-@override @pragma('vm:prefer-inline') $Res call({Object? id = null,Object? phone = freezed,Object? email = freezed,Object? fullName = null,Object? avatarUrl = freezed,Object? role = null,Object? preferredLanguage = null,Object? isVerified = null,}) {
+@override @pragma('vm:prefer-inline') $Res call({Object? id = null,Object? phone = freezed,Object? email = freezed,Object? fullName = null,Object? avatarUrl = freezed,Object? dateOfBirth = freezed,Object? role = null,Object? preferredLanguage = null,Object? isVerified = null,}) {
   return _then(_UserEntity(
 id: null == id ? _self.id : id // ignore: cast_nullable_to_non_nullable
 as String,phone: freezed == phone ? _self.phone : phone // ignore: cast_nullable_to_non_nullable
 as String?,email: freezed == email ? _self.email : email // ignore: cast_nullable_to_non_nullable
 as String?,fullName: null == fullName ? _self.fullName : fullName // ignore: cast_nullable_to_non_nullable
 as String,avatarUrl: freezed == avatarUrl ? _self.avatarUrl : avatarUrl // ignore: cast_nullable_to_non_nullable
-as String?,role: null == role ? _self.role : role // ignore: cast_nullable_to_non_nullable
+as String?,dateOfBirth: freezed == dateOfBirth ? _self.dateOfBirth : dateOfBirth // ignore: cast_nullable_to_non_nullable
+as DateTime?,role: null == role ? _self.role : role // ignore: cast_nullable_to_non_nullable
 as UserRole,preferredLanguage: null == preferredLanguage ? _self.preferredLanguage : preferredLanguage // ignore: cast_nullable_to_non_nullable
 as String,isVerified: null == isVerified ? _self.isVerified : isVerified // ignore: cast_nullable_to_non_nullable
 as bool,

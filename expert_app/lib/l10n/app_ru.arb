@@ -63,6 +63,8 @@
 
   "editProfileTitle": "Редактировать профиль",
   "editProfileNameLabel": "Имя, фамилия",
+  "editProfilePhoneLabel": "Контактный телефон",
+  "editProfileDateOfBirthLabel": "Дата рождения",
   "editProfileSaveButton": "Сохранить",
   "editProfileSuccess": "Профиль обновлён",
   "editProfileValidationError": "Имя не может быть пустым",
@@ -151,6 +153,7 @@
   "openShopNameLabel": "Название магазина",
   "openShopAddressLabel": "Адрес",
   "openShopRayonLabel": "Район",
+  "openShopPhoneLabel": "Контактный телефон",
   "openShopCategoriesLabel": "Категории материалов, которые вы продаёте",
   "openShopSubmitButton": "Отправить",
   "openShopSuccess": "Магазин отправлен, ожидайте подтверждения администратора",
@@ -235,6 +238,8 @@
   "adminRoleWorker": "Мастер",
   "adminRoleShopOwner": "Владелец магазина",
   "adminRoleAdmin": "Админ",
+  "adminUserAge": "{age} лет",
+  "@adminUserAge": {"placeholders": {"age": {"type": "int"}}},
 
   "aiAssistantTitle": "AI Помощник",
   "aiAssistantBannerTitle": "Спросите AI Помощника",

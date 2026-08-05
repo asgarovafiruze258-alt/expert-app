@@ -24,9 +24,6 @@ class AppColors {
   static const navIndicatorDark = Color(0xFF1E3A5F);
   static const onNavIndicatorDark = Color(0xFFBBDEFB);
 
-  /// Ana səhifənin üst paneli üçün açıq, isti-narıncı tonlu fon (işıqlı rejim).
-  static const homeAppBarLight = Color(0xFFFBEADD);
-
   static const lightBackground = Color(0xFFFAFAFA);
   static const lightSurface = Color(0xFFFFFFFF);
   static const lightOnSurface = Color(0xFF1A1A1A);

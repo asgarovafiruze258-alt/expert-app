@@ -64,6 +64,8 @@
 
   "editProfileTitle": "Profili redaktə et",
   "editProfileNameLabel": "Ad, Soyad",
+  "editProfilePhoneLabel": "Əlaqə nömrəsi",
+  "editProfileDateOfBirthLabel": "Doğum tarixi",
   "editProfileSaveButton": "Yadda saxla",
   "editProfileSuccess": "Profil yeniləndi",
   "editProfileValidationError": "Ad, Soyad boş ola bilməz",
@@ -152,6 +154,7 @@
   "openShopNameLabel": "Mağazanın adı",
   "openShopAddressLabel": "Ünvan",
   "openShopRayonLabel": "Rayon",
+  "openShopPhoneLabel": "Əlaqə nömrəsi",
   "openShopCategoriesLabel": "Satılan material kateqoriyaları",
   "openShopSubmitButton": "Göndər",
   "openShopSuccess": "Mağazanız göndərildi, admin təsdiqini gözləyir",
@@ -236,6 +239,8 @@
   "adminRoleWorker": "Usta",
   "adminRoleShopOwner": "Mağaza sahibi",
   "adminRoleAdmin": "Admin",
+  "adminUserAge": "{age} yaş",
+  "@adminUserAge": {"placeholders": {"age": {"type": "int"}}},
 
   "aiAssistantTitle": "AI Köməkçi",
   "aiAssistantBannerTitle": "AI Köməkçidən soruşun",

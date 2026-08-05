@@ -30,7 +30,11 @@ abstract class AuthRepository {
 
   Future<Either<Failure, UserEntity?>> getCurrentUser();
 
-  Future<Either<Failure, UserEntity>> updateProfile({required String fullName});
+  Future<Either<Failure, UserEntity>> updateProfile({
+    required String fullName,
+    String? phone,
+    DateTime? dateOfBirth,
+  });
 
   Future<Either<Failure, UserEntity>> updateAvatar({
     required Uint8List bytes,

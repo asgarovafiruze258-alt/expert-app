@@ -63,6 +63,8 @@
 
   "editProfileTitle": "Edit profile",
   "editProfileNameLabel": "Full name",
+  "editProfilePhoneLabel": "Contact phone",
+  "editProfileDateOfBirthLabel": "Date of birth",
   "editProfileSaveButton": "Save",
   "editProfileSuccess": "Profile updated",
   "editProfileValidationError": "Full name cannot be empty",
@@ -151,6 +153,7 @@
   "openShopNameLabel": "Shop name",
   "openShopAddressLabel": "Address",
   "openShopRayonLabel": "District",
+  "openShopPhoneLabel": "Contact phone",
   "openShopCategoriesLabel": "Material categories you sell",
   "openShopSubmitButton": "Submit",
   "openShopSuccess": "Your shop was submitted, awaiting admin approval",
@@ -235,6 +238,8 @@
   "adminRoleWorker": "Worker",
   "adminRoleShopOwner": "Shop owner",
   "adminRoleAdmin": "Admin",
+  "adminUserAge": "{age} y/o",
+  "@adminUserAge": {"placeholders": {"age": {"type": "int"}}},
 
   "aiAssistantTitle": "AI Assistant",
   "aiAssistantBannerTitle": "Ask the AI Assistant",

@@ -12,6 +12,7 @@ sealed class UserEntity with _$UserEntity {
     String? email,
     required String fullName,
     String? avatarUrl,
+    DateTime? dateOfBirth,
     required UserRole role,
     required String preferredLanguage,
     required bool isVerified,

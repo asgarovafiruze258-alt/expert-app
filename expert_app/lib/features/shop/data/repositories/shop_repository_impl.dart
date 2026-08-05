@@ -56,6 +56,7 @@ class ShopRepositoryImpl implements ShopRepository {
     String? rayon,
     double? latitude,
     double? longitude,
+    String? contactPhone,
     required List<String> categoryIds,
   }) async {
     try {
@@ -65,6 +66,7 @@ class ShopRepositoryImpl implements ShopRepository {
         rayon: rayon,
         latitude: latitude,
         longitude: longitude,
+        contactPhone: contactPhone,
         categoryIds: categoryIds,
       );
       return Right(model.toEntity());

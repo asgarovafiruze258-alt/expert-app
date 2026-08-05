@@ -23,6 +23,7 @@ class _OpenShopScreenState extends ConsumerState<OpenShopScreen> {
   final _nameController = TextEditingController();
   final _addressController = TextEditingController();
   final _rayonController = TextEditingController();
+  final _phoneController = TextEditingController();
   final _selectedCategoryIds = <String>{};
   double? _pickedLatitude;
   double? _pickedLongitude;
@@ -44,6 +45,7 @@ class _OpenShopScreenState extends ConsumerState<OpenShopScreen> {
     _nameController.dispose();
     _addressController.dispose();
     _rayonController.dispose();
+    _phoneController.dispose();
     super.dispose();
   }
 
@@ -63,6 +65,7 @@ class _OpenShopScreenState extends ConsumerState<OpenShopScreen> {
           rayon: _rayonController.text.trim().isEmpty ? null : _rayonController.text.trim(),
           latitude: _pickedLatitude,
           longitude: _pickedLongitude,
+          contactPhone: _phoneController.text.trim().isEmpty ? null : _phoneController.text.trim(),
           categoryIds: _selectedCategoryIds.toList(),
         );
     if (!mounted) return;
@@ -123,6 +126,13 @@ class _OpenShopScreenState extends ConsumerState<OpenShopScreen> {
                 controller: _rayonController,
                 label: l10n.openShopRayonLabel,
                 prefixIcon: Icons.map_outlined,
+              ),
+              const SizedBox(height: 12),
+              AppTextField(
+                controller: _phoneController,
+                label: l10n.openShopPhoneLabel,
+                keyboardType: TextInputType.phone,
+                prefixIcon: Icons.phone_outlined,
               ),
               const SizedBox(height: 20),
               Text(l10n.openShopCategoriesLabel, style: Theme.of(context).textTheme.titleSmall),
