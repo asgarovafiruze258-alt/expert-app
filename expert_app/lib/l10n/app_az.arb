@@ -60,7 +60,13 @@
 
   "profileTitle": "Profil",
   "profileLogout": "Çıxış et",
-  "profileEditComingSoon": "Profil redaktəsi tezliklə əlavə olunacaq",
+  "profileEditButton": "Redaktə et",
+
+  "editProfileTitle": "Profili redaktə et",
+  "editProfileNameLabel": "Ad, Soyad",
+  "editProfileSaveButton": "Yadda saxla",
+  "editProfileSuccess": "Profil yeniləndi",
+  "editProfileValidationError": "Ad, Soyad boş ola bilməz",
 
   "searchHint": "Usta və ya material axtar...",
   "sectionCategories": "Kateqoriyalar",

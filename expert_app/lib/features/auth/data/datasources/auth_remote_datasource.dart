@@ -1,3 +1,5 @@
+import 'dart:typed_data';
+
 import 'package:supabase_flutter/supabase_flutter.dart';
 
 import '../../../../core/errors/exceptions.dart';
@@ -21,6 +23,10 @@ abstract class AuthRemoteDataSource {
   Future<void> logout();
 
   Future<UserModel?> getCurrentUser();
+
+  Future<UserModel> updateProfile({required String fullName});
+
+  Future<UserModel> updateAvatar({required Uint8List bytes, required String fileExt});
 
   Stream<UserModel?> get authStateChanges;
 }
@@ -130,6 +136,51 @@ class AuthRemoteDataSourceImpl implements AuthRemoteDataSource {
     final user = client.auth.currentUser;
     if (user == null) return null;
     return _fetchProfile(user.id);
+  }
+
+  @override
+  Future<UserModel> updateProfile({required String fullName}) async {
+    final userId = client.auth.currentUser?.id;
+    if (userId == null) throw const UnauthorizedException();
+    try {
+      final row = await client
+          .from('profiles')
+          .update({'full_name': fullName})
+          .eq('id', userId)
+          .select()
+          .single();
+      return UserModel.fromJson(row);
+    } on PostgrestException catch (e) {
+      throw ServerException(e.message);
+    }
+  }
+
+  @override
+  Future<UserModel> updateAvatar({required Uint8List bytes, required String fileExt}) async {
+    final userId = client.auth.currentUser?.id;
+    if (userId == null) throw const UnauthorizedException();
+    try {
+      final path = '$userId/avatar.$fileExt';
+      await client.storage.from('avatars').uploadBinary(
+            path,
+            bytes,
+            fileOptions: const FileOptions(upsert: true),
+          );
+      // Eyni path yenidən yükləndikdə URL dəyişmədiyi üçün keşi sındırmaq lazımdır.
+      final publicUrl =
+          '${client.storage.from('avatars').getPublicUrl(path)}?v=${DateTime.now().millisecondsSinceEpoch}';
+      final row = await client
+          .from('profiles')
+          .update({'avatar_url': publicUrl})
+          .eq('id', userId)
+          .select()
+          .single();
+      return UserModel.fromJson(row);
+    } on StorageException catch (e) {
+      throw ServerException(e.message);
+    } on PostgrestException catch (e) {
+      throw ServerException(e.message);
+    }
   }
 
   @override

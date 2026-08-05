@@ -59,7 +59,13 @@
 
   "profileTitle": "Profile",
   "profileLogout": "Log out",
-  "profileEditComingSoon": "Profile editing will be available soon",
+  "profileEditButton": "Edit",
+
+  "editProfileTitle": "Edit profile",
+  "editProfileNameLabel": "Full name",
+  "editProfileSaveButton": "Save",
+  "editProfileSuccess": "Profile updated",
+  "editProfileValidationError": "Full name cannot be empty",
 
   "searchHint": "Search workers or materials...",
   "sectionCategories": "Categories",

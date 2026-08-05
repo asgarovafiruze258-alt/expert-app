@@ -1,6 +1,8 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
+import 'package:image_picker/image_picker.dart';
 
 import '../../../../core/errors/failure.dart';
 import '../../../../core/widgets/error_view.dart';
@@ -10,6 +12,7 @@ import '../../../shop/presentation/providers/shop_providers.dart';
 import '../../../worker/presentation/providers/worker_providers.dart';
 import '../../domain/entities/user_entity.dart';
 import '../providers/auth_providers.dart';
+import '../widgets/edit_profile_sheet.dart';
 
 class ProfileScreen extends ConsumerStatefulWidget {
   const ProfileScreen({super.key});
@@ -20,6 +23,32 @@ class ProfileScreen extends ConsumerStatefulWidget {
 
 class _ProfileScreenState extends ConsumerState<ProfileScreen> {
   bool _isLoggingOut = false;
+
+  void _openEditSheet(String currentFullName) {
+    showModalBottomSheet(
+      context: context,
+      isScrollControlled: true,
+      builder: (context) => EditProfileSheet(initialFullName: currentFullName),
+    );
+  }
+
+  Future<void> _pickAndUploadAvatar() async {
+    final picked = await ImagePicker().pickImage(
+      source: ImageSource.gallery,
+      maxWidth: 640,
+      imageQuality: 85,
+    );
+    if (picked == null) return;
+    if (!mounted) return;
+
+    final bytes = await picked.readAsBytes();
+    final fileExt = picked.path.split('.').last.toLowerCase();
+    if (!mounted) return;
+
+    await ref
+        .read(editProfileControllerProvider.notifier)
+        .updateAvatar(bytes: bytes, fileExt: fileExt);
+  }
 
   Future<void> _logout() async {
     setState(() => _isLoggingOut = true);
@@ -38,6 +67,16 @@ class _ProfileScreenState extends ConsumerState<ProfileScreen> {
   Widget build(BuildContext context) {
     final l10n = AppLocalizations.of(context);
     final authState = ref.watch(authStateChangesProvider);
+    final isUploadingAvatar = ref.watch(editProfileControllerProvider).isLoading;
+
+    ref.listen(editProfileControllerProvider, (previous, next) {
+      final error = next.error;
+      if (error is Failure) {
+        ScaffoldMessenger.of(context)
+          ..hideCurrentSnackBar()
+          ..showSnackBar(SnackBar(content: Text(error.message)));
+      }
+    });
 
     return Scaffold(
       appBar: AppBar(title: Text(l10n.profileTitle)),
@@ -54,11 +93,58 @@ class _ProfileScreenState extends ConsumerState<ProfileScreen> {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.stretch,
                 children: [
-                  CircleAvatar(
-                    radius: 40,
-                    child: Text(
-                      user.fullName.isNotEmpty ? user.fullName[0].toUpperCase() : '?',
-                      style: const TextStyle(fontSize: 32),
+                  Center(
+                    child: GestureDetector(
+                      onTap: isUploadingAvatar ? null : _pickAndUploadAvatar,
+                      child: Stack(
+                        children: [
+                          CircleAvatar(
+                            radius: 40,
+                            backgroundImage: user.avatarUrl != null
+                                ? CachedNetworkImageProvider(user.avatarUrl!)
+                                : null,
+                            child: user.avatarUrl == null
+                                ? Text(
+                                    user.fullName.isNotEmpty ? user.fullName[0].toUpperCase() : '?',
+                                    style: const TextStyle(fontSize: 32),
+                                  )
+                                : null,
+                          ),
+                          if (isUploadingAvatar)
+                            Positioned.fill(
+                              child: DecoratedBox(
+                                decoration: BoxDecoration(
+                                  shape: BoxShape.circle,
+                                  color: Colors.black.withValues(alpha: 0.4),
+                                ),
+                                child: const Center(
+                                  child: SizedBox(
+                                    width: 24,
+                                    height: 24,
+                                    child: CircularProgressIndicator(
+                                      strokeWidth: 2,
+                                      color: Colors.white,
+                                    ),
+                                  ),
+                                ),
+                              ),
+                            )
+                          else
+                            Positioned(
+                              right: 0,
+                              bottom: 0,
+                              child: Container(
+                                padding: const EdgeInsets.all(4),
+                                decoration: BoxDecoration(
+                                  shape: BoxShape.circle,
+                                  color: Theme.of(context).colorScheme.secondary,
+                                  border: Border.all(color: Theme.of(context).scaffoldBackgroundColor, width: 2),
+                                ),
+                                child: const Icon(Icons.camera_alt_outlined, size: 14, color: Colors.white),
+                              ),
+                            ),
+                        ],
+                      ),
                     ),
                   ),
                   const SizedBox(height: 16),
@@ -72,10 +158,10 @@ class _ProfileScreenState extends ConsumerState<ProfileScreen> {
                   if (user.phone != null)
                     Text(user.phone!, textAlign: TextAlign.center),
                   const SizedBox(height: 8),
-                  Text(
-                    l10n.profileEditComingSoon,
-                    textAlign: TextAlign.center,
-                    style: Theme.of(context).textTheme.bodySmall,
+                  TextButton.icon(
+                    onPressed: () => _openEditSheet(user.fullName),
+                    icon: const Icon(Icons.edit_outlined, size: 18),
+                    label: Text(l10n.profileEditButton),
                   ),
                   const SizedBox(height: 8),
                   OutlinedButton.icon(

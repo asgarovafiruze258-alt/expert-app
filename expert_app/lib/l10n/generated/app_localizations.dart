@@ -376,11 +376,41 @@ abstract class AppLocalizations {
   /// **'Çıxış et'**
   String get profileLogout;
 
-  /// No description provided for @profileEditComingSoon.
+  /// No description provided for @profileEditButton.
   ///
   /// In az, this message translates to:
-  /// **'Profil redaktəsi tezliklə əlavə olunacaq'**
-  String get profileEditComingSoon;
+  /// **'Redaktə et'**
+  String get profileEditButton;
+
+  /// No description provided for @editProfileTitle.
+  ///
+  /// In az, this message translates to:
+  /// **'Profili redaktə et'**
+  String get editProfileTitle;
+
+  /// No description provided for @editProfileNameLabel.
+  ///
+  /// In az, this message translates to:
+  /// **'Ad, Soyad'**
+  String get editProfileNameLabel;
+
+  /// No description provided for @editProfileSaveButton.
+  ///
+  /// In az, this message translates to:
+  /// **'Yadda saxla'**
+  String get editProfileSaveButton;
+
+  /// No description provided for @editProfileSuccess.
+  ///
+  /// In az, this message translates to:
+  /// **'Profil yeniləndi'**
+  String get editProfileSuccess;
+
+  /// No description provided for @editProfileValidationError.
+  ///
+  /// In az, this message translates to:
+  /// **'Ad, Soyad boş ola bilməz'**
+  String get editProfileValidationError;
 
   /// No description provided for @searchHint.
   ///

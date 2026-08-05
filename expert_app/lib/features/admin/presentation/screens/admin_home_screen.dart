@@ -60,7 +60,7 @@ class _AdminDashboard extends ConsumerWidget {
               crossAxisCount: 2,
               mainAxisSpacing: 12,
               crossAxisSpacing: 12,
-              childAspectRatio: 1.8,
+              childAspectRatio: 1.5,
               children: [
                 _StatCard(label: l10n.adminStatUsers, value: data.userCount),
                 _StatCard(label: l10n.adminStatWorkers, value: data.workerCount),

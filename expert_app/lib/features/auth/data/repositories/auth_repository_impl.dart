@@ -1,3 +1,5 @@
+import 'dart:typed_data';
+
 import 'package:fpdart/fpdart.dart';
 
 import '../../../../core/errors/exceptions.dart';
@@ -14,6 +16,7 @@ class AuthRepositoryImpl implements AuthRepository {
   Failure _mapException(Object error) {
     if (error is ServerException) return Failure.server(message: error.message);
     if (error is NetworkException) return Failure.network(message: error.message);
+    if (error is UnauthorizedException) return Failure.unauthorized(message: error.message);
     return Failure.unexpected(message: error.toString());
   }
 
@@ -96,6 +99,29 @@ class AuthRepositoryImpl implements AuthRepository {
     try {
       final model = await remoteDataSource.getCurrentUser();
       return Right(model?.toEntity());
+    } catch (e) {
+      return Left(_mapException(e));
+    }
+  }
+
+  @override
+  Future<Either<Failure, UserEntity>> updateProfile({required String fullName}) async {
+    try {
+      final model = await remoteDataSource.updateProfile(fullName: fullName);
+      return Right(model.toEntity());
+    } catch (e) {
+      return Left(_mapException(e));
+    }
+  }
+
+  @override
+  Future<Either<Failure, UserEntity>> updateAvatar({
+    required Uint8List bytes,
+    required String fileExt,
+  }) async {
+    try {
+      final model = await remoteDataSource.updateAvatar(bytes: bytes, fileExt: fileExt);
+      return Right(model.toEntity());
     } catch (e) {
       return Left(_mapException(e));
     }

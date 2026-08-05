@@ -59,7 +59,13 @@
 
   "profileTitle": "Профиль",
   "profileLogout": "Выйти",
-  "profileEditComingSoon": "Редактирование профиля скоро будет доступно",
+  "profileEditButton": "Редактировать",
+
+  "editProfileTitle": "Редактировать профиль",
+  "editProfileNameLabel": "Имя, фамилия",
+  "editProfileSaveButton": "Сохранить",
+  "editProfileSuccess": "Профиль обновлён",
+  "editProfileValidationError": "Имя не может быть пустым",
 
   "searchHint": "Поиск мастеров или материалов...",
   "sectionCategories": "Категории",

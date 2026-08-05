@@ -1,3 +1,5 @@
+import 'dart:typed_data';
+
 import 'package:fpdart/fpdart.dart';
 
 import '../../../../core/errors/failure.dart';
@@ -27,6 +29,13 @@ abstract class AuthRepository {
   Future<Either<Failure, Unit>> logout();
 
   Future<Either<Failure, UserEntity?>> getCurrentUser();
+
+  Future<Either<Failure, UserEntity>> updateProfile({required String fullName});
+
+  Future<Either<Failure, UserEntity>> updateAvatar({
+    required Uint8List bytes,
+    required String fileExt,
+  });
 
   /// Session dəyişikliklərini (login/logout) canlı izləmək üçün.
   Stream<UserEntity?> get authStateChanges;

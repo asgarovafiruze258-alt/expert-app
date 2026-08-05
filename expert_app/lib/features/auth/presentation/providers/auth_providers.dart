@@ -1,3 +1,6 @@
+import 'dart:async';
+import 'dart:typed_data';
+
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 
@@ -21,3 +24,44 @@ final authRepositoryProvider = Provider<AuthRepository>((ref) {
 final authStateChangesProvider = StreamProvider<UserEntity?>((ref) {
   return ref.watch(authRepositoryProvider).authStateChanges;
 });
+
+class EditProfileController extends AsyncNotifier<void> {
+  @override
+  FutureOr<void> build() {}
+
+  Future<bool> updateFullName(String fullName) async {
+    state = const AsyncLoading();
+    final result = await ref.read(authRepositoryProvider).updateProfile(fullName: fullName);
+    return result.fold(
+      (failure) {
+        state = AsyncError(failure, StackTrace.current);
+        return false;
+      },
+      (_) {
+        state = const AsyncData(null);
+        ref.invalidate(authStateChangesProvider);
+        return true;
+      },
+    );
+  }
+
+  Future<bool> updateAvatar({required Uint8List bytes, required String fileExt}) async {
+    state = const AsyncLoading();
+    final result =
+        await ref.read(authRepositoryProvider).updateAvatar(bytes: bytes, fileExt: fileExt);
+    return result.fold(
+      (failure) {
+        state = AsyncError(failure, StackTrace.current);
+        return false;
+      },
+      (_) {
+        state = const AsyncData(null);
+        ref.invalidate(authStateChangesProvider);
+        return true;
+      },
+    );
+  }
+}
+
+final editProfileControllerProvider =
+    AsyncNotifierProvider<EditProfileController, void>(EditProfileController.new);

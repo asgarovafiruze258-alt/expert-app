@@ -152,8 +152,22 @@ class AppLocalizationsRu extends AppLocalizations {
   String get profileLogout => 'Выйти';
 
   @override
-  String get profileEditComingSoon =>
-      'Редактирование профиля скоро будет доступно';
+  String get profileEditButton => 'Редактировать';
+
+  @override
+  String get editProfileTitle => 'Редактировать профиль';
+
+  @override
+  String get editProfileNameLabel => 'Имя, фамилия';
+
+  @override
+  String get editProfileSaveButton => 'Сохранить';
+
+  @override
+  String get editProfileSuccess => 'Профиль обновлён';
+
+  @override
+  String get editProfileValidationError => 'Имя не может быть пустым';
 
   @override
   String get searchHint => 'Поиск мастеров или материалов...';

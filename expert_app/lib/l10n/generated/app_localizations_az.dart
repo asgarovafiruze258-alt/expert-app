@@ -152,8 +152,22 @@ class AppLocalizationsAz extends AppLocalizations {
   String get profileLogout => 'Çıxış et';
 
   @override
-  String get profileEditComingSoon =>
-      'Profil redaktəsi tezliklə əlavə olunacaq';
+  String get profileEditButton => 'Redaktə et';
+
+  @override
+  String get editProfileTitle => 'Profili redaktə et';
+
+  @override
+  String get editProfileNameLabel => 'Ad, Soyad';
+
+  @override
+  String get editProfileSaveButton => 'Yadda saxla';
+
+  @override
+  String get editProfileSuccess => 'Profil yeniləndi';
+
+  @override
+  String get editProfileValidationError => 'Ad, Soyad boş ola bilməz';
 
   @override
   String get searchHint => 'Usta və ya material axtar...';

@@ -152,7 +152,22 @@ class AppLocalizationsEn extends AppLocalizations {
   String get profileLogout => 'Log out';
 
   @override
-  String get profileEditComingSoon => 'Profile editing will be available soon';
+  String get profileEditButton => 'Edit';
+
+  @override
+  String get editProfileTitle => 'Edit profile';
+
+  @override
+  String get editProfileNameLabel => 'Full name';
+
+  @override
+  String get editProfileSaveButton => 'Save';
+
+  @override
+  String get editProfileSuccess => 'Profile updated';
+
+  @override
+  String get editProfileValidationError => 'Full name cannot be empty';
 
   @override
   String get searchHint => 'Search workers or materials...';
