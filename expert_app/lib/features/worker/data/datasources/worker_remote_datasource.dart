@@ -32,7 +32,9 @@ class WorkerRemoteDataSourceImpl implements WorkerRemoteDataSource {
       if (categoryId != null) {
         final rows = await client
             .from('workers')
-            .select('$_workerSelect, worker_categories!inner(category_id)')
+            .select(
+              '*, profiles(full_name, avatar_url), worker_categories!inner(category_id, categories(name))',
+            )
             .eq('is_approved', true)
             .eq('worker_categories.category_id', categoryId)
             .order('rating', ascending: false);
